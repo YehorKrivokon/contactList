@@ -4,6 +4,7 @@ import contactList.app.dao.UserDao;
 import contactList.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import javax.persistence.PersistenceContext;
 /**
  * Created by комп on 05.04.2017.
  */
+@Service
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserDao userDao;

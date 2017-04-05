@@ -14,7 +14,7 @@
     <spring-data-jpa.version>1.8.2.RELEASE</spring-data-jpa.version>
     <hibernate.version>4.3.11.Final</hibernate.version>
     <hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
-    <mysql-connector.version>5.1.36</mysql-connector.version>
+    <!--<mysql-connector.version>5.1.36</mysql-connector.version>-->
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <jstl.version>1.2</jstl.version>
     <junit.version>3.8.1</junit.version>
@@ -66,10 +66,16 @@
       <version>${hibernate.version}</version>
     </dependency>
 
-    <dependency>
+  <!--  <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>${mysql-connector.version}</version>
+    </dependency>-->
+
+    <dependency>
+      <groupId>postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.4.1208-jdbc42-atlassian-hosted</version>
     </dependency>
 
     <dependency>

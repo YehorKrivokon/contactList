@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: postgresql:postgresql:9.4.1208-jdbc42-atlassian-hosted">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/postgresql/postgresql/9.4.1208-jdbc42-atlassian-hosted/postgresql-9.4.1208-jdbc42-atlassian-hosted.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/postgresql/postgresql/9.4.1208-jdbc42-atlassian-hosted/postgresql-9.4.1208-jdbc42-atlassian-hosted-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/postgresql/postgresql/9.4.1208-jdbc42-atlassian-hosted/postgresql-9.4.1208-jdbc42-atlassian-hosted-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
