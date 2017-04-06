@@ -7,7 +7,7 @@
         </encoder>
     </appender>
 
-    <logger name="gmail.dimon0272.webapp">
+    <logger name="contactList.app">
         <level value="debug"/>
     </logger>
 

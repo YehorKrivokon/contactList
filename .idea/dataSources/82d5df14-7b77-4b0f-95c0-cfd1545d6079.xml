@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-04-05.23:43:21.987</IntrospectionTimestamp>
-      <IntrospectionStateNumber>54165</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-04-06.09:26:26.776</IntrospectionTimestamp>
+      <IntrospectionStateNumber>54198</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -30,120 +30,125 @@
       <ObjectId>11480</ObjectId>
     </schema>
     <sequence id="9" parent="3" name="contacts_id_seq">
-      <ObjectId>177147</ObjectId>
-      <StateNumber>54165</StateNumber>
+      <ObjectId>177298</ObjectId>
+      <StateNumber>54197</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="10" parent="3" name="users_id_seq">
-      <ObjectId>177136</ObjectId>
-      <StateNumber>54164</StateNumber>
+    <sequence id="10" parent="3" name="hibernate_sequence">
+      <ObjectId>177314</ObjectId>
+      <StateNumber>54198</StateNumber>
+      <SequenceIdentity>1..999999</SequenceIdentity>
+    </sequence>
+    <sequence id="11" parent="3" name="users_id_seq">
+      <ObjectId>177287</ObjectId>
+      <StateNumber>54196</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <table id="11" parent="3" name="contacts">
-      <ObjectId>177149</ObjectId>
-      <StateNumber>54165</StateNumber>
+    <table id="12" parent="3" name="contacts">
+      <ObjectId>177300</ObjectId>
+      <StateNumber>54197</StateNumber>
     </table>
-    <table id="12" parent="3" name="users">
-      <ObjectId>177138</ObjectId>
-      <StateNumber>54165</StateNumber>
+    <table id="13" parent="3" name="users">
+      <ObjectId>177289</ObjectId>
+      <StateNumber>54197</StateNumber>
     </table>
-    <column id="13" parent="11" name="id">
+    <column id="14" parent="12" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54165</StateNumber>
+      <StateNumber>54197</StateNumber>
       <SequenceName>contacts_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;contacts_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="14" parent="11" name="contactlogin">
+    <column id="15" parent="12" name="contactlogin">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54165</StateNumber>
+      <StateNumber>54197</StateNumber>
     </column>
-    <column id="15" parent="11" name="contactfullname">
+    <column id="16" parent="12" name="contactfullname">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54165</StateNumber>
+      <StateNumber>54197</StateNumber>
     </column>
-    <column id="16" parent="11" name="contactphone">
+    <column id="17" parent="12" name="contactphone">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54165</StateNumber>
+      <StateNumber>54197</StateNumber>
     </column>
-    <column id="17" parent="11" name="contactdescription">
+    <column id="18" parent="12" name="contactdescription">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54165</StateNumber>
+      <StateNumber>54197</StateNumber>
     </column>
-    <column id="18" parent="11" name="contactimportance">
+    <column id="19" parent="12" name="contactimportance">
       <Position>6</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54165</StateNumber>
+      <StateNumber>54197</StateNumber>
     </column>
-    <column id="19" parent="11" name="contactstatus">
+    <column id="20" parent="12" name="contactstatus">
       <Position>7</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54165</StateNumber>
+      <StateNumber>54197</StateNumber>
     </column>
-    <column id="20" parent="11" name="user_id">
+    <column id="21" parent="12" name="user_id">
       <Position>8</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54165</StateNumber>
+      <StateNumber>54197</StateNumber>
     </column>
-    <index id="21" parent="11" name="contacts_pkey">
-      <ObjectId>177156</ObjectId>
+    <index id="22" parent="12" name="contacts_pkey">
+      <ObjectId>177307</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="22" parent="11" name="contacts_pkey">
-      <ObjectId>177157</ObjectId>
+    <key id="23" parent="12" name="contacts_pkey">
+      <ObjectId>177308</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>contacts_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="23" parent="11" name="contacts_user_id_fkey">
-      <ObjectId>177158</ObjectId>
+    <foreign-key id="24" parent="12" name="contacts_user_id_fkey">
+      <ObjectId>177309</ObjectId>
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="24" parent="12" name="id">
+    <column id="25" parent="13" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54164</StateNumber>
+      <StateNumber>54196</StateNumber>
       <SequenceName>users_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="25" parent="12" name="username">
+    <column id="26" parent="13" name="username">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54164</StateNumber>
+      <StateNumber>54196</StateNumber>
     </column>
-    <column id="26" parent="12" name="password">
+    <column id="27" parent="13" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54164</StateNumber>
+      <StateNumber>54196</StateNumber>
     </column>
-    <index id="27" parent="12" name="users_pkey">
-      <ObjectId>177145</ObjectId>
+    <index id="28" parent="13" name="users_pkey">
+      <ObjectId>177296</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="28" parent="12" name="users_pkey">
-      <ObjectId>177146</ObjectId>
+    <key id="29" parent="13" name="users_pkey">
+      <ObjectId>177297</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
