@@ -59,9 +59,9 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value ="/", method = RequestMethod.GET)
-    public String start(Model model){
-        return "login";
+    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    public String welcome(Model model) {
+        return "welcome";
     }
 
 }
