@@ -1,4 +1,4 @@
-package contactList.app.service;
+package contactList.app.service.security;
 
 /**
  * Created by комп on 05.04.2017.

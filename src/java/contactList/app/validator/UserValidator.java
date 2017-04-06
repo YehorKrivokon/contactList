@@ -1,7 +1,7 @@
 package contactList.app.validator;
 
 import contactList.app.model.User;
-import contactList.app.service.UserService;
+import contactList.app.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

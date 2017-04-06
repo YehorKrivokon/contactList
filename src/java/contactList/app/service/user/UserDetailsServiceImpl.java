@@ -1,4 +1,4 @@
-package contactList.app.service;
+package contactList.app.service.user;
 
 import contactList.app.dao.UserDao;
 import contactList.app.model.User;

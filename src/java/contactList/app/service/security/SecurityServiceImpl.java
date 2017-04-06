@@ -1,4 +1,4 @@
-package contactList.app.service;
+package contactList.app.service.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

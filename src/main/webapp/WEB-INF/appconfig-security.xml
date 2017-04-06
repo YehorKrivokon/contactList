@@ -21,7 +21,7 @@
     </authentication-manager>
 
     <beans:bean id="userDetailsServiceImpl"
-                class="contactList.app.service.UserDetailsServiceImpl"></beans:bean>
+                class="contactList.app.service.user.UserDetailsServiceImpl"></beans:bean>
 
     <beans:bean id="encoder"
                 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

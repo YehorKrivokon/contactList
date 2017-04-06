@@ -1,8 +1,8 @@
 package contactList.app.controller;
 
 import contactList.app.model.User;
-import contactList.app.service.SecurityService;
-import contactList.app.service.UserService;
+import contactList.app.service.security.SecurityService;
+import contactList.app.service.user.UserService;
 import contactList.app.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
