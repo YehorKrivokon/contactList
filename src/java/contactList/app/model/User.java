@@ -67,4 +67,12 @@ public class User {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
+    public List<Contact> getUserListOfContacts() {
+        return userListOfContacts;
+    }
+
+    public void setUserListOfContacts(List<Contact> userListOfContacts) {
+        this.userListOfContacts = userListOfContacts;
+    }
 }

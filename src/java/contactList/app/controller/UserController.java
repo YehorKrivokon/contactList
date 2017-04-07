@@ -1,5 +1,6 @@
 package contactList.app.controller;
 
+import contactList.app.action.user.CreateUserAction;
 import contactList.app.model.User;
 import contactList.app.service.security.SecurityService;
 import contactList.app.service.user.UserService;
@@ -43,7 +44,7 @@ public class UserController {
         if(bindingResult.hasErrors()){
             return "registration";
         }
-        userService.save(userForm);
+        new CreateUserAction(userService, userForm).execute();
 
         return "redirect:/login";
     }

@@ -3,14 +3,14 @@
   <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.1">
     <root id="1"/>
     <database id="2" parent="1" name="contactList">
-      <ObjectId>177102</ObjectId>
+      <ObjectId>177343</ObjectId>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-04-06.09:42:28.622</IntrospectionTimestamp>
-      <IntrospectionStateNumber>54198</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-04-07.15:50:28.911</IntrospectionTimestamp>
+      <IntrospectionStateNumber>54214</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -30,35 +30,35 @@
       <ObjectId>11480</ObjectId>
     </schema>
     <sequence id="9" parent="3" name="contacts_id_seq">
-      <ObjectId>177298</ObjectId>
-      <StateNumber>54197</StateNumber>
+      <ObjectId>177355</ObjectId>
+      <StateNumber>54213</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
     <sequence id="10" parent="3" name="hibernate_sequence">
-      <ObjectId>177314</ObjectId>
-      <StateNumber>54198</StateNumber>
+      <ObjectId>177371</ObjectId>
+      <StateNumber>54214</StateNumber>
       <SequenceIdentity>1..999999</SequenceIdentity>
     </sequence>
     <sequence id="11" parent="3" name="users_id_seq">
-      <ObjectId>177287</ObjectId>
-      <StateNumber>54196</StateNumber>
+      <ObjectId>177344</ObjectId>
+      <StateNumber>54212</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
     <table id="12" parent="3" name="contacts">
-      <ObjectId>177300</ObjectId>
-      <StateNumber>54197</StateNumber>
+      <ObjectId>177357</ObjectId>
+      <StateNumber>54213</StateNumber>
     </table>
     <table id="13" parent="3" name="users">
-      <ObjectId>177289</ObjectId>
-      <StateNumber>54197</StateNumber>
+      <ObjectId>177346</ObjectId>
+      <StateNumber>54213</StateNumber>
     </table>
     <column id="14" parent="12" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54197</StateNumber>
+      <StateNumber>54213</StateNumber>
       <SequenceName>contacts_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;contacts_id_seq&apos;::regclass)</DefaultExpression>
     </column>
@@ -66,57 +66,57 @@
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54197</StateNumber>
+      <StateNumber>54213</StateNumber>
     </column>
     <column id="16" parent="12" name="contactfullname">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54197</StateNumber>
+      <StateNumber>54213</StateNumber>
     </column>
     <column id="17" parent="12" name="contactphone">
       <Position>4</Position>
-      <DataType>integer|0</DataType>
+      <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54197</StateNumber>
+      <StateNumber>54213</StateNumber>
     </column>
     <column id="18" parent="12" name="contactdescription">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54197</StateNumber>
+      <StateNumber>54213</StateNumber>
     </column>
     <column id="19" parent="12" name="contactimportance">
       <Position>6</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54197</StateNumber>
+      <StateNumber>54213</StateNumber>
     </column>
     <column id="20" parent="12" name="contactstatus">
       <Position>7</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54197</StateNumber>
+      <StateNumber>54213</StateNumber>
     </column>
     <column id="21" parent="12" name="user_id">
       <Position>8</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54197</StateNumber>
+      <StateNumber>54213</StateNumber>
     </column>
     <index id="22" parent="12" name="contacts_pkey">
-      <ObjectId>177307</ObjectId>
+      <ObjectId>177364</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="23" parent="12" name="contacts_pkey">
-      <ObjectId>177308</ObjectId>
+      <ObjectId>177365</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>contacts_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="24" parent="12" name="contacts_user_id_fkey">
-      <ObjectId>177309</ObjectId>
+      <ObjectId>177366</ObjectId>
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
@@ -126,7 +126,7 @@
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54196</StateNumber>
+      <StateNumber>54212</StateNumber>
       <SequenceName>users_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
     </column>
@@ -134,21 +134,21 @@
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54196</StateNumber>
+      <StateNumber>54212</StateNumber>
     </column>
     <column id="27" parent="13" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>54196</StateNumber>
+      <StateNumber>54212</StateNumber>
     </column>
     <index id="28" parent="13" name="users_pkey">
-      <ObjectId>177296</ObjectId>
+      <ObjectId>177353</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="29" parent="13" name="users_pkey">
-      <ObjectId>177297</ObjectId>
+      <ObjectId>177354</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>

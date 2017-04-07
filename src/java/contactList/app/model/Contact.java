@@ -24,7 +24,7 @@ public class Contact {
     private String contactFullname;
 
     @Column(name = "contactphone")
-    private Integer contactPhone;
+    private String contactPhone;
 
     @Column(name = "contactdescription")
     private String contactDescription;
@@ -39,6 +39,16 @@ public class Contact {
     private User user;
 
     public Contact() {
+    }
+
+    public Contact(String contactLogin, String contactFullname, String contactPhone, String contactDescription, String contactStatus, String important, User user) {
+        this.contactLogin = contactLogin;
+        this.contactFullname = contactFullname;
+        this.contactPhone = contactPhone;
+        this. contactDescription = contactDescription;
+        this.contactstatus = contactStatus;
+        this.contactImportance = important;
+        this.user = user;
     }
 
     public Long getId() {
@@ -65,11 +75,11 @@ public class Contact {
         this.contactFullname = contactFullname;
     }
 
-    public Integer getContactPhone() {
+    public String getContactPhone() {
         return contactPhone;
     }
 
-    public void setContactPhone(Integer contactPhone) {
+    public void setContactPhone(String contactPhone) {
         this.contactPhone = contactPhone;
     }
 

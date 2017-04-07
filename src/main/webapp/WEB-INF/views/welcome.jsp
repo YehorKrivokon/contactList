@@ -53,55 +53,60 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Add contact</h4>
                             </div>
-                            <div class="modal-body">
-                                <%--<p>Write information about your new contact</p>--%>
-                                <div class="form-group">
-                                    <label for="contactLogin">Login</label>
-                                    <input type="text" class="form-control" id="contactLogin">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contactFullname">Fullname</label>
-                                    <input type="text" class="form-control" id="contactFullname">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contactFullname">Phone</label>
-                                    <input type="text" class="form-control" id="contactPhone">
-                                </div>
-                                <div>
-                                    <label for="importance">Importance</label>
-                                    <div id="importance">
-                                        <div class="stars">
-                                            <form action="">
-                                                <input class="star star-5" id="star-5" type="radio" name="star"/>
-                                                <label class="star star-5" for="star-5"></label>
-                                                <input class="star star-4" id="star-4" type="radio" name="star"/>
-                                                <label class="star star-4" for="star-4"></label>
-                                                <input class="star star-3" id="star-3" type="radio" name="star"/>
-                                                <label class="star star-3" for="star-3"></label>
-                                                <input class="star star-2" id="star-2" type="radio" name="star"/>
-                                                <label class="star star-2" for="star-2"></label>
-                                                <input class="star star-1" id="star-1" type="radio" name="star"/>
-                                                <label class="star star-1" for="star-1"></label>
-                                            </form>
+                            <form action="${contextPath}/add_contact" method="POST">
+                                <div class="modal-body">
+                                    <%--<p>Write information about your new contact</p>--%>
+                                    <div class="form-group">
+                                        <label for="contactLogin">Login</label>
+                                        <input name="contactLogin" type="text" class="form-control" id="contactLogin">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactFullname">Fullname</label>
+                                        <input name="contactFullname" type="text" class="form-control"
+                                               id="contactFullname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactPhone">Phone</label>
+                                        <input name="contactPhone" type="text" class="form-control" id="contactPhone">
+                                    </div>
+                                    <div>
+                                        <label for="importance">Importance</label>
+                                        <input id="important" type="hidden" name="important" value=""/>
+                                        <div id="importance">
+                                            <div class="stars">
+                                                <input class="star star-5" id="5" type="radio" name="star" onclick="document.getElementById('important').value = '5'"/>
+                                                <label class="star star-5" for="5"></label>
+                                                <input class="star star-4" id="4" type="radio" name="star" onclick="document.getElementById('important').value = '4'"/>
+                                                <label class="star star-4" for="4"></label>
+                                                <input class="star star-3" id="3" type="radio" name="star" onclick="document.getElementById('important').value = '3'"/>
+                                                <label class="star star-3" for="3"></label>
+                                                <input class="star star-2" id="2" type="radio" name="star" onclick="document.getElementById('important').value = '2'"/>
+                                                <label class="star star-2" for="2"></label>
+                                                <input class="star star-1" id="1" type="radio" name="star" onclick="document.getElementById('important').value = '1'"/>
+                                                <label class="star star-1" for="1"></label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                     <div class="form-group">
-                                        <label for="sel1">Status</label>
-                                        <select class="form-control" id="sel1">
+                                        <label for="contactStatus">Status</label>
+                                        <select name="contactStatus" class="form-control" id="contactStatus">
                                             <option>friend</option>
                                             <option>business</option>
                                             <option>unknown</option>
                                         </select>
                                     </div>
-                                <div class="form-group">
-                                    <label for="contactDescription">Description</label>
-                                    <textarea class="form-control" rows="5" id="contactDescription"></textarea>
+                                    <div class="form-group">
+                                        <label for="contactDescription">Description</label>
+                                        <textarea name="contactDescription" class="form-control" rows="5"
+                                                  id="contactDescription"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <button type="submit" class="btn btn-default">Save</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
