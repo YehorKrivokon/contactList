@@ -117,6 +117,7 @@
                 </div>
 
                 <div class="contactListTable">
+                    <c:if test="${contacts.size() != 0}">
                     <table class="table table-hover table-bordered">
                         <tr>
                             <th>#</th>
@@ -155,6 +156,10 @@
                             </tr>
                         </c:forEach>
                     </table>
+                    </c:if>
+                    <c:if test="${contacts.size() == 0}">
+                        <h3>Hi, you can add your contacts here!</h3>
+                    </c:if>
                 </div>
             </div>
             <div class="tab-pane" id="2b">

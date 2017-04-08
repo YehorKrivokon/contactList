@@ -7,7 +7,20 @@
 }
 
 table {
+    table-layout: fixed;
     counter-reset: rowNumber;
+    width: 100%;
+
+}
+
+td:first-child{
+
+}
+
+td:not(:first-child) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 table tr, table tr th{
