@@ -50,8 +50,6 @@ public class ContactController {
         List<Contact> contactList = contactService.getUserContactList(user);
         contactList.add(contact);
         user.setUserListOfContacts(contactList);
-        new UpdateUserAction(userService, user);
-        //new UpdateUserAction(userService, user).execute();
         return "redirect:/welcome";
     }
 }

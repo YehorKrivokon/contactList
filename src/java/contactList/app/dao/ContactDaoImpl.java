@@ -55,13 +55,15 @@ public class ContactDaoImpl implements ContactDao{
 
     @Transactional
     @Override
-    public void delete(Contact duty) {
-        entityManager.remove(entityManager.contains(duty) ? duty : entityManager.merge(duty));
+    public void delete(Contact contact) {
+        entityManager.remove(entityManager.contains(contact) ? contact : entityManager.merge(contact));
     }
 
     @Override
     public List<Contact> getUserContactList(User user) {
-        return user.getUserListOfContacts();
+        query = entityManager.createQuery("SELECT DISTINCT c FROM Contact c INNER JOIN c.user g WHERE g.id = :user1", Contact.class);
+        query.setParameter("user1", user.getId());
+        return (List<Contact>) query.getResultList();
     }
 
 }
