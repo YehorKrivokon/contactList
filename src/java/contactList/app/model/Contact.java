@@ -33,7 +33,7 @@ public class Contact {
     private String contactImportance;
 
     @Column(name = "contactstatus")
-    private String contactstatus;
+    private String contactStatus;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
@@ -46,7 +46,7 @@ public class Contact {
         this.contactFullname = contactFullname;
         this.contactPhone = contactPhone;
         this. contactDescription = contactDescription;
-        this.contactstatus = contactStatus;
+        this.contactStatus = contactStatus;
         this.contactImportance = important;
         this.user = user;
     }
@@ -99,12 +99,12 @@ public class Contact {
         this.contactImportance = contactImportance;
     }
 
-    public String getContactstatus() {
-        return contactstatus;
+    public String getContactStatus() {
+        return contactStatus;
     }
 
-    public void setContactstatus(String contactstatus) {
-        this.contactstatus = contactstatus;
+    public void setContactStatus(String contactStatus) {
+        this.contactStatus = contactStatus;
     }
 
     public User getUser() {

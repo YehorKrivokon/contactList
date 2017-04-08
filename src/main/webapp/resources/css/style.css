@@ -5,3 +5,150 @@
 .contactListTable {
     padding-top: 20px;
 }
+
+table {
+    counter-reset: rowNumber;
+}
+
+table tr, table tr th{
+    align-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+table tr:not(:first-child) td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+.btn.action{
+    display: inline-block;
+    padding: 6px 12px;
+    /*margin-bottom: 0;*/
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    align-content: center;
+    border-radius: 4px;
+    padding: 10px 10px;
+    font-weight: 700;
+}
+
+.btn-lg.action {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 12px;
+    line-height: 0.1;
+    font-weight: 700;
+    align-content: center;
+    border-radius: 6px;
+}
+
+.btn-primary.action {
+    text-align: center;
+    color: #fff;
+    background-color: #428bca;
+    vertical-align: middle;
+    border-color: #357ebd;
+    align-content: center;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.btn-primary.action:hover,
+.btn-primary.action:focus,
+.btn-primary.action:active,
+.btn-primary.active.action,
+.open.action .dropdown-toggle.btn-primary.action {
+    color: #fff;
+    text-align: center;
+    background-color: #3276b1;
+    align-content: center;
+    border-color: #285e8e;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+/***********************
+  OUTLINE BUTTONS
+************************/
+
+.btn.outline.action {
+    background: none;
+    text-align: center;
+    padding: 12px 12px;
+    vertical-align: middle;
+    width: 80px;
+    align-content: center;
+    height: 15px;
+    font-weight: 700;
+    font-size: 11px;
+}
+.btn-primary.outline.action {
+    text-align: center;
+    border: 2px solid #0099cc;
+    vertical-align: middle;
+    color: #0099cc;
+    align-content: center;
+    font-size: 11px;
+    font-weight: 700;
+}
+.btn-primary.outline.action:hover, .btn-primary.outline.action:focus, .btn-primary.outline.action:active, .btn-primary.outline.active.action, .open.action > .dropdown-toggle.btn-primary.action {
+    color: #007299;
+    border-color: #007299;
+    vertical-align: middle;
+    font-size: 11px;
+    text-align: center;
+    align-content: center;
+    font-weight: 700;
+}
+.btn-primary.outline.action:active, .btn-primary.outline.active.action {
+    border-color: #007299;
+    background: none;
+    align-content: center;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: none;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/***********************
+  CUSTON BTN VALUES
+************************/
+
+.btn.action {
+    align-content: center;
+    padding: 14px 20px;
+    vertical-align: middle;
+    text-align: center;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+.btn.action:focus, .btn.action:active:focus, .btn.active.action:focus {
+    outline: 0 none;
+    align-content: center;
+    text-align: center;
+    font-size: 11px;
+    vertical-align: middle;
+    font-weight: 700;
+}

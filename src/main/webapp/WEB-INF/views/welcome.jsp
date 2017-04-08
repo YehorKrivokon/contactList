@@ -74,15 +74,20 @@
                                         <input id="important" type="hidden" name="important" value=""/>
                                         <div id="importance">
                                             <div class="stars">
-                                                <input class="star star-5" id="5" type="radio" name="star" onclick="document.getElementById('important').value = '5'"/>
+                                                <input class="star star-5" id="5" type="radio" name="star"
+                                                       onclick="document.getElementById('important').value = '5'"/>
                                                 <label class="star star-5" for="5"></label>
-                                                <input class="star star-4" id="4" type="radio" name="star" onclick="document.getElementById('important').value = '4'"/>
+                                                <input class="star star-4" id="4" type="radio" name="star"
+                                                       onclick="document.getElementById('important').value = '4'"/>
                                                 <label class="star star-4" for="4"></label>
-                                                <input class="star star-3" id="3" type="radio" name="star" onclick="document.getElementById('important').value = '3'"/>
+                                                <input class="star star-3" id="3" type="radio" name="star"
+                                                       onclick="document.getElementById('important').value = '3'"/>
                                                 <label class="star star-3" for="3"></label>
-                                                <input class="star star-2" id="2" type="radio" name="star" onclick="document.getElementById('important').value = '2'"/>
+                                                <input class="star star-2" id="2" type="radio" name="star"
+                                                       onclick="document.getElementById('important').value = '2'"/>
                                                 <label class="star star-2" for="2"></label>
-                                                <input class="star star-1" id="1" type="radio" name="star" onclick="document.getElementById('important').value = '1'"/>
+                                                <input class="star star-1" id="1" type="radio" name="star"
+                                                       onclick="document.getElementById('important').value = '1'"/>
                                                 <label class="star star-1" for="1"></label>
                                             </div>
                                         </div>
@@ -114,27 +119,37 @@
                 <div class="contactListTable">
                     <table class="table table-hover table-bordered">
                         <tr>
-                            <th>Title</th>
-                            <th>Day to start</th>
-                            <th>
-
-                            </th>
-                            <th>
-
-                            </th>
+                            <th>#</th>
+                            <th>Login</th>
+                            <th>Phone</th>
+                            <th>Status</th>
                         </tr>
                         <c:forEach var="contact" items="${contacts}">
                             <tr class="">
-                                <td><c:out  value="${contact.contactLogin}" /></td>
-                                <td><c:out  value="${contact.contactFullname}" /></td>
+                                <td></td>
+                                <td><c:out value="${contact.contactLogin}"/></td>
+                                <td><c:out value="${contact.contactPhone}"/></td>
+                                <td><c:out value="${contact.contactStatus}"/></td>
                                 <td>
                                     <form action="${contextPath}/details/${contact.id}">
-                                        <input id="${contact.id}_det" class="btn btn-lg btn-primary btn-block" type="submit" value="Details"/>
+                                        <button id="${contact.id}_det" type="submit"
+                                                class="btn btn-primary btn-lg outline action">Details
+                                        </button>
                                     </form>
                                 </td>
-                                <td  role="presentation" class="active" data-toggle="modal" data-target="#Delete">
+                                <td>
+                                    <form action="${contextPath}/update/${contact.id}">
+                                        <button id="${contact.id}_upd" type="submit"
+                                                class="btn btn-primary btn-lg outline action">Update
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
                                     <form action="${contextPath}/delete/${contact.id}">
-                                        <input id="${contact.id}_del" class="btn btn-lg btn-primary btn-block" type="submit" value="Details"/>
+                                        <button id="${contact.id}_del" type="submit"
+                                                class="btn btn-primary btn-lg outline action">Delete
+                                        </button>
+
                                     </form>
                                 </td>
                             </tr>
