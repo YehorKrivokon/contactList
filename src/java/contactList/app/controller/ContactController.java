@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * Created by комп on 05.04.2017.
  */
@@ -44,11 +46,12 @@ public class ContactController {
         User user = userService.findByUsernameWithService(securityService.findLoggedInUsername());
         Contact contact = new Contact(contactLogin, contactFullname, contactPhone,
                 contactDescription, contactStatus, important, user);
-
-        user.getUserListOfContacts().add(contact);
-
-        new UpdateUserAction(userService, user).execute();
         new CreateContactAction(contactService, contact).execute();
+        List<Contact> contactList = contactService.getUserContactList(user);
+        contactList.add(contact);
+        user.setUserListOfContacts(contactList);
+        new UpdateUserAction(userService, user);
+        //new UpdateUserAction(userService, user).execute();
         return "redirect:/welcome";
     }
 }

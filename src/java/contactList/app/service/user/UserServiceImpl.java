@@ -1,6 +1,7 @@
 package contactList.app.service.user;
 
 import contactList.app.dao.UserDao;
+import contactList.app.model.Contact;
 import contactList.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Created by комп on 05.04.2017.
