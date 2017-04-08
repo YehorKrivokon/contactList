@@ -110,6 +110,37 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="contactListTable">
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <th>Title</th>
+                            <th>Day to start</th>
+                            <th>
+
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                        <c:forEach var="contact" items="${contacts}">
+                            <tr class="">
+                                <td><c:out  value="${contact.contactLogin}" /></td>
+                                <td><c:out  value="${contact.contactFullname}" /></td>
+                                <td>
+                                    <form action="${contextPath}/details/${contact.id}">
+                                        <input id="${contact.id}_det" class="btn btn-lg btn-primary btn-block" type="submit" value="Details"/>
+                                    </form>
+                                </td>
+                                <td  role="presentation" class="active" data-toggle="modal" data-target="#Delete">
+                                    <form action="${contextPath}/delete/${contact.id}">
+                                        <input id="${contact.id}_del" class="btn btn-lg btn-primary btn-block" type="submit" value="Details"/>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
             </div>
             <div class="tab-pane" id="2b">
                 <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for

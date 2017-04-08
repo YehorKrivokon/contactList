@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,14 +36,25 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-    @RequestMapping(value = "/add_contact", method= RequestMethod.POST)
+    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    public String welcome(Model model) {
+        List<Contact> contacts = new ArrayList<>();
+        User user = userService.findByUsernameWithService(securityService.findLoggedInUsername());
+        if (user != null) {
+            contacts = contactService.getUserContactList(user);
+        }
+        model.addAttribute("contacts", contacts);
+        return securityService.returnPageByCheckingOnAnonymous("welcome", "login");
+    }
+
+    @RequestMapping(value = "/add_contact", method = RequestMethod.POST)
     public String addContact(Model model,
-                               @RequestParam String contactLogin,
-                               @RequestParam String contactFullname,
-                               @RequestParam String contactPhone,
-                               @RequestParam String contactDescription,
-                               @RequestParam String contactStatus,
-                               @RequestParam String important){
+                             @RequestParam String contactLogin,
+                             @RequestParam String contactFullname,
+                             @RequestParam String contactPhone,
+                             @RequestParam String contactDescription,
+                             @RequestParam String contactStatus,
+                             @RequestParam String important) {
         User user = userService.findByUsernameWithService(securityService.findLoggedInUsername());
         Contact contact = new Contact(contactLogin, contactFullname, contactPhone,
                 contactDescription, contactStatus, important, user);

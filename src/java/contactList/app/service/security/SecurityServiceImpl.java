@@ -1,6 +1,7 @@
 package contactList.app.service.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,10 +36,19 @@ public class SecurityServiceImpl implements SecurityService {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                 new UsernamePasswordAuthenticationToken(userDetails, password);
         authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-        if(usernamePasswordAuthenticationToken.isAuthenticated()){
+        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
             logger.debug(String.format("Successfully auto logged in", username));
         }
+    }
+
+    @Override
+    public String returnPageByCheckingOnAnonymous(String ifNotAnonymous, String ifAnonymous) {
+        String result = ifNotAnonymous;
+        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) {
+            result = ifAnonymous;
+        }
+        return result;
     }
 }

@@ -1,6 +1,7 @@
 package contactList.app.controller;
 
 import contactList.app.action.user.CreateUserAction;
+import contactList.app.model.Contact;
 import contactList.app.model.User;
 import contactList.app.service.security.SecurityService;
 import contactList.app.service.user.UserService;
@@ -14,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * Created by комп on 05.04.2017.
@@ -61,14 +64,4 @@ public class UserController {
 
         return "login";
     }
-
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        String result = "welcome";
-        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken){
-            result = "login";
-        }
-        return result;
-    }
-
 }
