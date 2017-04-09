@@ -13,7 +13,7 @@ public interface ContactDao {
     Contact findByContactId(Long id);
     void updateContact(Contact contactToUpgrade);
     void add(Contact contact);
-    void delete(Contact duty);
+    void delete(Contact contact);
 
     List<Contact> getUserContactList(User user);
 }

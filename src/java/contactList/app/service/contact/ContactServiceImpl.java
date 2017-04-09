@@ -36,4 +36,14 @@ public class ContactServiceImpl implements ContactService{
     public List<Contact> getUserContactList(User user) {
         return contactDao.getUserContactList(user);
     }
+
+    @Override
+    public Contact getContactById(Long id) {
+        return contactDao.findByContactId(id);
+    }
+
+    @Override
+    public void delete(Contact contact) {
+        contactDao.delete(contact);
+    }
 }

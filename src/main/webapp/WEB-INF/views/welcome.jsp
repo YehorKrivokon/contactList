@@ -43,10 +43,10 @@
 
         <div class="tab-content clearfix">
             <div class="tab-pane active tab" id="1b">
-                <button type="button" class="btn btn-info btn-2g" data-toggle="modal" data-target="#myModal">Add
+                <button type="button" class="btn btn-info btn-2g" data-toggle="modal" data-target="#addContact">Add
                     Contact
                 </button>
-                <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal fade" id="addContact" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -134,7 +134,7 @@
                                 <td>
                                     <form action="${contextPath}/details/${contact.id}">
                                         <button id="${contact.id}_det" type="submit"
-                                                class="btn btn-primary btn-lg outline action">Details
+                                                class="btn btn-primary btn-lg outline action" >Details
                                         </button>
                                     </form>
                                 </td>
@@ -146,12 +146,29 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="${contextPath}/delete/${contact.id}">
-                                        <button id="${contact.id}_del" type="submit"
-                                                class="btn btn-primary btn-lg outline action">Delete
+                                    <form>
+                                        <button id="${contact.id}_del" type="button"
+                                                class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#deleteContact"
+                                                onclick="document.getElementById('deletingContactId').value = '${contact.id}'">Delete
                                         </button>
-
                                     </form>
+                                    <div class="modal fade" id="deleteContact" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Dou you really want to delete this contact?</h4>
+                                                </div>
+                                                <form action="${contextPath}/deleteContact" method="POST">
+                                                    <div class="modal-footer">
+                                                        <input id="deletingContactId" type="hidden" value="" name="deletingContactId"/>
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                        <button type="submit" class="btn btn-default">Delete</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </c:forEach>

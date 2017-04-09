@@ -1,6 +1,7 @@
 package contactList.app.controller;
 
 import contactList.app.action.contact.CreateContactAction;
+import contactList.app.action.contact.DeleteContactAction;
 import contactList.app.action.user.UpdateUserAction;
 import contactList.app.model.Contact;
 import contactList.app.model.User;
@@ -62,6 +63,12 @@ public class ContactController {
         List<Contact> contactList = contactService.getUserContactList(user);
         contactList.add(contact);
         user.setUserListOfContacts(contactList);
+        return "redirect:/welcome";
+    }
+
+    @RequestMapping(value="/deleteContact", method = RequestMethod.POST)
+    public String deleteContact(Model model, @RequestParam String deletingContactId){
+        new DeleteContactAction(contactService, contactService.getContactById(Long.valueOf(deletingContactId))).execute();
         return "redirect:/welcome";
     }
 }
