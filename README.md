@@ -6,8 +6,8 @@ If you have no time or internet to send messages by yourself - you can use a spe
 Thats registration page - here you can create a new account.
 
 ![contactlist3](https://cloud.githubusercontent.com/assets/25393471/24870164/1bc3da6c-1e1e-11e7-959f-6959ae99b98e.png)
-This is a "welcome" page - here you can add your contacts. If there aren't any contacts in your list, will shows a message which proposes you to create a new one.
-Click on the "Add contact button". Here is a modal window which allows to create a contact.
+This is a "welcome" page - here you can add your contacts. If there aren't any contacts in your list, will be displayed a message which proposes you to create a new one.
+Click on the "Add contact" button. Will be shown a modal window which allows to create a contact.
 
 ![contactlist4](https://cloud.githubusercontent.com/assets/25393471/24870162/1bc288b0-1e1e-11e7-9b64-e9ed9abf1e69.png)
 After adding contacts you can see them in the table.
