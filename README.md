@@ -14,5 +14,4 @@ After adding contacts you can see tham in the table.
 
 ![contactlist5](https://cloud.githubusercontent.com/assets/25393471/24870165/1c0f7558-1e1e-11e7-8359-0084742e0a19.png)
 Now you can click on "Details" button and watch your contact.
-
 You can also delete and update your contacts.
