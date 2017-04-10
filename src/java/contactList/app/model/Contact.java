@@ -1,5 +1,11 @@
 package contactList.app.model;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -113,6 +119,14 @@ public class Contact {
 
     public Byte[] getAvatar() {
         return avatar;
+    }
+
+    @Transient
+    public ResponseEntity<byte[]> getAvatarAsAPicture(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+        return new ResponseEntity<byte[]>(ArrayUtils.toPrimitive(avatar), headers, HttpStatus.OK);
     }
 
     public void setAvatar(Byte[] avatar) {

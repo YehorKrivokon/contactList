@@ -78,18 +78,9 @@ public class ContactController {
     }
 
 
-    @RequestMapping("/avatar/{contact.id}")
-    public ResponseEntity<byte[]> onPhoto(@PathVariable("avatar") long id) {
-        return avatarByContactId(id);
-    }
-
-
-    private ResponseEntity<byte[]> avatarByContactId(long id) {
-        byte[] bytes = ArrayUtils.toPrimitive(contactService.getContactById(id).getAvatar());
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_PNG);
-
-        return new ResponseEntity<byte[]>(bytes, headers, HttpStatus.OK);
+    @RequestMapping("/avatar/{contact_id}")
+    public ResponseEntity<byte[]> onPhoto(@PathVariable("contact_id") long id) {
+        return contactService.getContactById(id).getAvatarAsAPicture();
     }
 
 }

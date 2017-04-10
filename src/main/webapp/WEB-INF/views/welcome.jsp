@@ -110,8 +110,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                   <%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                   --%> <button type="submit" class="btn btn-default">Save</button>
+                                    <button type="submit" class="btn btn-default">Save</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </form>
@@ -135,7 +134,7 @@
                                 <td><c:out value="${contact.contactPhone}"/></td>
                                 <td><c:out value="${contact.contactStatus}"/></td>
                                 <td>
-                                    <form <%--action="${contextPath}/detailsContact"--%>>
+                                    <form<%--action="${contextPath}/detailsContact"--%>>
                                         <button id="${contact.id}_det" type="button"
                                                 class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#detailsContact">Details
                                         </button>
@@ -148,7 +147,7 @@
                                                     <h4 class="modal-title">Contact detail information</h4>
                                                     <div class="modal-body">
                                                         <div class="panel panel-info">
-                                                            <img src="/avatar/${contact.id}" />
+                                                            <img src="${contextPath}/avatar/${contact.id}" width="150"/>
                                                             <h4>Login: ${contact.contactLogin}</h4>
                                                             <h4>Fullname: ${contact.contactFullname}</h4>
                                                             <h4>Phone: ${contact.contactPhone}</h4>
