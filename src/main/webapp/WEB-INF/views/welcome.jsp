@@ -136,10 +136,10 @@
                                 <td>
                                     <form<%--action="${contextPath}/detailsContact"--%>>
                                         <button id="${contact.id}_det" type="button"
-                                                class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#detailsContact">Details
+                                                class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#detailsContact${contact.id}">Details
                                         </button>
                                     </form>
-                                    <div class="modal fade" id="detailsContact" role="dialog">
+                                    <div class="modal fade" id="detailsContact${contact.id}" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -179,11 +179,11 @@
                                 <td>
                                     <form>
                                         <button id="${contact.id}_del" type="button"
-                                                class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#deleteContact"
+                                                class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#deleteContact${contact.id}"
                                                 >Delete
                                         </button>
                                     </form>
-                                    <div class="modal fade" id="deleteContact" role="dialog">
+                                    <div class="modal fade" id="deleteContact${contact.id}" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
