@@ -6,15 +6,32 @@
     padding-top: 20px;
 }
 
-table {
+.tableContact {
     table-layout: fixed;
     counter-reset: rowNumber;
     width: 100%;
 
 }
 
-td:first-child{
+.tableContact td:first-child{
 
+}
+
+.detailsTable {
+    margin: auto;
+}
+
+.description {
+    text-align: left;
+}
+
+.contactInfo {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.details {
+    text-align: left;
 }
 
 td:not(:first-child) {
