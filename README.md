@@ -10,7 +10,7 @@ This is a "welcome" page - here you can add your contacts. If there aren't any c
 Click on the "Add contact button". Here is a modal window which allows to create a contact.
 
 ![contactlist4](https://cloud.githubusercontent.com/assets/25393471/24870162/1bc288b0-1e1e-11e7-9b64-e9ed9abf1e69.png)
-After adding contacts you can see tham in the table.
+After adding contacts you can see them in the table.
 
 ![contactlist5](https://cloud.githubusercontent.com/assets/25393471/24870165/1c0f7558-1e1e-11e7-8359-0084742e0a19.png)
 Now you can click on "Details" button and watch your contact.
