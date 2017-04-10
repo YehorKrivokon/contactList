@@ -53,8 +53,11 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Add contact</h4>
                             </div>
-                            <form action="${contextPath}/add_contact" method="POST">
+                            <form action="${contextPath}/add_contact?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data" method="POST">
                                 <div class="modal-body">
+                                    <div class="form-group">
+                                        Photo: <input type="file" name="avatar">
+                                    </div>
                                     <%--<p>Write information about your new contact</p>--%>
                                     <div class="form-group">
                                         <label for="contactLogin">Login</label>
@@ -107,8 +110,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <button type="submit" class="btn btn-default">Save</button>
+                                   <%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                   --%> <button type="submit" class="btn btn-default">Save</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </form>
@@ -145,6 +148,7 @@
                                                     <h4 class="modal-title">Contact detail information</h4>
                                                     <div class="modal-body">
                                                         <div class="panel panel-info">
+                                                            <img src="/avatar/${contact.id}" />
                                                             <h4>Login: ${contact.contactLogin}</h4>
                                                             <h4>Fullname: ${contact.contactFullname}</h4>
                                                             <h4>Phone: ${contact.contactPhone}</h4>

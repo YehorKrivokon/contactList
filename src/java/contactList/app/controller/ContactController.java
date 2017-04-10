@@ -5,20 +5,24 @@ import contactList.app.action.contact.DeleteContactAction;
 import contactList.app.action.user.UpdateUserAction;
 import contactList.app.model.Contact;
 import contactList.app.model.User;
+import contactList.app.service.Avatar.AvatarHandler;
 import contactList.app.service.contact.ContactService;
 import contactList.app.service.security.SecurityService;
 import contactList.app.service.user.UserService;
 import contactList.app.validator.UserValidator;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +59,11 @@ public class ContactController {
                              @RequestParam String contactPhone,
                              @RequestParam String contactDescription,
                              @RequestParam String contactStatus,
-                             @RequestParam String important) {
+                             @RequestParam String important,
+                             @RequestParam MultipartFile avatar) {
         User user = userService.findByUsernameWithService(securityService.findLoggedInUsername());
         Contact contact = new Contact(contactLogin, contactFullname, contactPhone,
-                contactDescription, contactStatus, important, user);
+                contactDescription, contactStatus, important, AvatarHandler.getBytesFromPhoto(avatar), user);
         new CreateContactAction(contactService, contact).execute();
         List<Contact> contactList = contactService.getUserContactList(user);
         contactList.add(contact);
@@ -71,4 +76,20 @@ public class ContactController {
         new DeleteContactAction(contactService, contactService.getContactById(Long.valueOf(deletingContactId))).execute();
         return "redirect:/welcome";
     }
+
+
+    @RequestMapping("/avatar/{contact.id}")
+    public ResponseEntity<byte[]> onPhoto(@PathVariable("avatar") long id) {
+        return avatarByContactId(id);
+    }
+
+
+    private ResponseEntity<byte[]> avatarByContactId(long id) {
+        byte[] bytes = ArrayUtils.toPrimitive(contactService.getContactById(id).getAvatar());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+        return new ResponseEntity<byte[]>(bytes, headers, HttpStatus.OK);
+    }
+
 }

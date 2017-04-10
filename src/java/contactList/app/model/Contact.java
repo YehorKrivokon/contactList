@@ -35,19 +35,23 @@ public class Contact {
     @Column(name = "contactstatus")
     private String contactStatus;
 
+    @Column(name = "avatar")
+    private Byte[] avatar;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
 
     public Contact() {
     }
 
-    public Contact(String contactLogin, String contactFullname, String contactPhone, String contactDescription, String contactStatus, String important, User user) {
+    public Contact(String contactLogin, String contactFullname, String contactPhone, String contactDescription, String contactStatus, String important, Byte[] avatar, User user) {
         this.contactLogin = contactLogin;
         this.contactFullname = contactFullname;
         this.contactPhone = contactPhone;
         this. contactDescription = contactDescription;
         this.contactStatus = contactStatus;
         this.contactImportance = important;
+        this.avatar = avatar;
         this.user = user;
     }
 
@@ -105,6 +109,14 @@ public class Contact {
 
     public void setContactStatus(String contactStatus) {
         this.contactStatus = contactStatus;
+    }
+
+    public Byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Byte[] avatar) {
+        this.avatar = avatar;
     }
 
     public User getUser() {

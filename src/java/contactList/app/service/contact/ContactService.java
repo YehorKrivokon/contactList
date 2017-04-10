@@ -2,6 +2,7 @@ package contactList.app.service.contact;
 
 import contactList.app.model.Contact;
 import contactList.app.model.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
