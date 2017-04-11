@@ -195,7 +195,7 @@
                                             <button id="${contact.id}_upd" type="button"
                                                     class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#updateContact">Update
                                             </button>
-                                            <div class="modal fade" id="updateContact" role="dialog">
+                                            <div class="modal fade updateTr" id="updateContact" role="dialog">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">

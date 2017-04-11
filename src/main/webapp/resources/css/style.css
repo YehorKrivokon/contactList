@@ -40,12 +40,16 @@ td:not(:first-child) {
     text-overflow: ellipsis;
 }
 
+.updateTr{
+    align-content: left;
+    text-align: left;
+}
+
 table tr, table tr th{
     align-content: center;
     text-align: center;
     vertical-align: middle;
 }
-
 table tr:not(:first-child) {
     counter-increment: rowNumber;
 }
