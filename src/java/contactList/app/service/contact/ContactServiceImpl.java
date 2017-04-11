@@ -30,7 +30,7 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
     public void update(Contact contact) {
-        entityManager.merge(contact);
+        contactDao.updateContact(contact);
     }
 
     @Override

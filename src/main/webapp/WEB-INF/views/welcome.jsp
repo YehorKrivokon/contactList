@@ -191,7 +191,8 @@
 
                                     </td>
                                     <td>
-                                        <form action="${contextPath}/update/${contact.id}?${_csrf.parameterName}=${_csrf.token}">
+                                        <form action="${contextPath}/update/${contact.id}?${_csrf.parameterName}=${_csrf.token}"
+                                              enctype="multipart/form-data" method="POST">
                                             <button id="${contact.id}_upd" type="button"
                                                     class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#updateContact">Update
                                             </button>
@@ -251,9 +252,21 @@
                                                                 <div class="form-group">
                                                                     <label for="contactStatusUpd">Status</label>
                                                                     <select name="contactStatusUpd" class="form-control" id="contactStatusUpd">
-                                                                        <option>friend</option>
-                                                                        <option>business</option>
-                                                                        <option>unknown</option>
+                                                                        <c:if test="${contact.contactStatus == 'friend'}">
+                                                                            <option selected="selected">friend</option>
+                                                                            <option>business</option>
+                                                                            <option>unknown</option>
+                                                                        </c:if>
+                                                                        <c:if test="${contact.contactStatus == 'business'}">
+                                                                            <option>friend</option>
+                                                                            <option selected="selected">business</option>
+                                                                            <option>unknown</option>
+                                                                        </c:if>
+                                                                        <c:if test="${contact.contactStatus == 'unknown'}">
+                                                                            <option>friend</option>
+                                                                            <option>business</option>
+                                                                            <option selected="selected">unknown</option>
+                                                                        </c:if>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">

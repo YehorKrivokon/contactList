@@ -2,6 +2,7 @@ package contactList.app.controller;
 
 import contactList.app.action.contact.CreateContactAction;
 import contactList.app.action.contact.DeleteContactAction;
+import contactList.app.action.contact.UpdateContactAction;
 import contactList.app.action.user.UpdateUserAction;
 import contactList.app.model.Contact;
 import contactList.app.model.User;
@@ -24,6 +25,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,9 +85,28 @@ public class ContactController {
         return contactService.getContactById(id).getAvatarAsAPicture();
     }
 
-    @RequestMapping("/update/{contact_id}")
-    public String updateContact(@PathVariable("contact_id") long id){
-
+    @RequestMapping(value="/update/{contact_id}", method = RequestMethod.POST)
+    public String updateContact(@PathVariable("contact_id") long id,
+                                @RequestParam String contactLoginUpd,
+                                @RequestParam String contactFullnameUpd,
+                                @RequestParam String contactPhoneUpd,
+                                @RequestParam String contactDescriptionUpd,
+                                @RequestParam String contactStatusUpd,
+                                @RequestParam String importantUpd,
+                                @RequestParam MultipartFile avatarUpd){
+        Contact contact = contactService.getContactById(id);
+        try {
+            contact.setAvatar(ArrayUtils.toObject(avatarUpd.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        contact.setContactLogin(contactLoginUpd);
+        contact.setContactFullname(contactFullnameUpd);
+        contact.setContactPhone(contactPhoneUpd);
+        contact.setContactDescription(contactDescriptionUpd);
+        contact.setContactImportance(importantUpd);
+        contact.setContactStatus(contactStatusUpd);
+        new UpdateContactAction(contactService, contact).execute();
         return "redirect:/welcome";
     }
 
