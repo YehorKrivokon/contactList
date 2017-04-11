@@ -83,4 +83,10 @@ public class ContactController {
         return contactService.getContactById(id).getAvatarAsAPicture();
     }
 
+    @RequestMapping("/update/{contact_id}")
+    public String updateContact(@PathVariable("contact_id") long id){
+
+        return "redirect:/welcome";
+    }
+
 }

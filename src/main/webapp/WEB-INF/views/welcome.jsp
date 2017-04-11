@@ -57,7 +57,8 @@
                                   enctype="multipart/form-data" method="POST">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        Photo: <input type="file" name="avatar">
+                                        <label for="avatar">Avatar</label>
+                                        <input id="avatar" type="file" name="avatar">
                                     </div>
                                     <%--<p>Write information about your new contact</p>--%>
                                     <div class="form-group">
@@ -135,7 +136,7 @@
                                     <td><c:out value="${contact.contactPhone}"/></td>
                                     <td><c:out value="${contact.contactStatus}"/></td>
                                     <td>
-                                        <form<%--action="${contextPath}/detailsContact"--%>>
+                                        <form>
                                             <button id="${contact.id}_det" type="button"
                                                     class="btn btn-primary btn-lg outline action" data-toggle="modal"
                                                     data-target="#detailsContact${contact.id}">Details
@@ -163,7 +164,7 @@
                                                                     <h4>Fullname: ${contact.contactFullname}</h4>
                                                                     <h4>Phone: ${contact.contactPhone}</h4>
                                                                     <h4>Status: ${contact.contactStatus}</h4>
-                                                                    <h4>Importance: ${contact.contactImportance} /5</h4>
+                                                                    <h4>Importance: ${contact.contactImportance} / 5</h4>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -190,10 +191,86 @@
 
                                     </td>
                                     <td>
-                                        <form action="${contextPath}/update/${contact.id}">
-                                            <button id="${contact.id}_upd" type="submit"
-                                                    class="btn btn-primary btn-lg outline action">Update
+                                        <form action="${contextPath}/update/${contact.id}?${_csrf.parameterName}=${_csrf.token}">
+                                            <button id="${contact.id}_upd" type="button"
+                                                    class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#updateContact">Update
                                             </button>
+                                            <div class="modal fade" id="updateContact" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Update contact</h4>
+                                                        </div>
+                                                        <form action="${contextPath}/update/?${_csrf.parameterName}=${_csrf.token}"
+                                                              enctype="multipart/form-data" method="POST">
+                                                            <div class="modal-body">
+                                                                <img src="${contextPath}/avatar/${contact.id}"
+                                                                     width="150"/>
+                                                                <div class="form-group">
+                                                                    <label for="avatarUpd">Avatar</label>
+                                                                    <input id="avatarUpd" type="file" name="avatarUpd">
+                                                                </div>
+                                                                    <%--<p>Write information about your new contact</p>--%>
+                                                                <div class="form-group">
+                                                                    <label for="contactLoginUpd">Login</label>
+                                                                    <input name="contactLoginUpd" value="${contact.contactLogin}" type="text" class="form-control" id="contactLoginUpd">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="contactFullnameUpd">Fullname</label>
+                                                                    <input name="contactFullnameUpd" value="${contact.contactFullname}"  type="text" class="form-control"
+                                                                           id="contactFullnameUpd">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="contactPhoneUpd">Phone</label>
+                                                                    <input name="contactPhoneUpd" type="text" value="${contact.contactPhone}"  class="form-control" id="contactPhoneUpd">
+                                                                </div>
+                                                                <div>
+                                                                    <label for="importanceUpd">Importance</label>
+                                                                    <input id="importantUpd" type="hidden" name="importantUpd" value=""/>
+                                                                    <div id="importanceUpd">
+                                                                        <div class="stars">
+                                                                            <input class="star star-5" id="5" type="radio" name="star"
+                                                                                   onclick="document.getElementById('importantUpd').value = '5'"/>
+                                                                            <label class="star star-5" for="5"></label>
+                                                                            <input class="star star-4" id="4" type="radio" name="star"
+                                                                                   onclick="document.getElementById('importantUpd').value = '4'"/>
+                                                                            <label class="star star-4" for="4"></label>
+                                                                            <input class="star star-3" id="3" type="radio" name="star"
+                                                                                   onclick="document.getElementById('importantUpd').value = '3'"/>
+                                                                            <label class="star star-3" for="3"></label>
+                                                                            <input class="star star-2" id="2" type="radio" name="star"
+                                                                                   onclick="document.getElementById('importantUpd').value = '2'"/>
+                                                                            <label class="star star-2" for="2"></label>
+                                                                            <input class="star star-1" id="1" type="radio" name="star"
+                                                                                   onclick="document.getElementById('importantUpd').value = '1'"/>
+                                                                            <label class="star star-1" for="1"></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="contactStatusUpd">Status</label>
+                                                                    <select name="contactStatusUpd" class="form-control" id="contactStatusUpd">
+                                                                        <option>friend</option>
+                                                                        <option>business</option>
+                                                                        <option>unknown</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="contactDescriptionUpd">Description</label>
+                                                                    <textarea name="contactDescriptionUpd" class="form-control" rows="5"
+                                                                              id="contactDescriptionUpd">${contact.contactDescription}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-default">Update</button>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </form>
                                     </td>
                                     <td>
