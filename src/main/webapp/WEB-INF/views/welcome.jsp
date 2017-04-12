@@ -164,7 +164,8 @@
                                                                     <h4>Fullname: ${contact.contactFullname}</h4>
                                                                     <h4>Phone: ${contact.contactPhone}</h4>
                                                                     <h4>Status: ${contact.contactStatus}</h4>
-                                                                    <h4>Importance: ${contact.contactImportance} / 5</h4>
+                                                                    <h4>Importance: ${contact.contactImportance} /
+                                                                        5</h4>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -194,13 +195,16 @@
                                         <form action="${contextPath}/update/${contact.id}?${_csrf.parameterName}=${_csrf.token}"
                                               enctype="multipart/form-data" method="POST">
                                             <button id="${contact.id}_upd" type="button"
-                                                    class="btn btn-primary btn-lg outline action" data-toggle="modal" data-target="#updateContact">Update
+                                                    class="btn btn-primary btn-lg outline action" data-toggle="modal"
+                                                    data-target="#updateContact">Update
                                             </button>
                                             <div class="modal fade updateTr" id="updateContact" role="dialog">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                                &times;
+                                                            </button>
                                                             <h4 class="modal-title">Update contact</h4>
                                                         </div>
                                                         <form action="${contextPath}/update/?${_csrf.parameterName}=${_csrf.token}"
@@ -215,35 +219,47 @@
                                                                     <%--<p>Write information about your new contact</p>--%>
                                                                 <div class="form-group">
                                                                     <label for="contactLoginUpd">Login</label>
-                                                                    <input name="contactLoginUpd" value="${contact.contactLogin}" type="text" class="form-control" id="contactLoginUpd">
+                                                                    <input name="contactLoginUpd"
+                                                                           value="${contact.contactLogin}" type="text"
+                                                                           class="form-control" id="contactLoginUpd">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="contactFullnameUpd">Fullname</label>
-                                                                    <input name="contactFullnameUpd" value="${contact.contactFullname}"  type="text" class="form-control"
+                                                                    <input name="contactFullnameUpd"
+                                                                           value="${contact.contactFullname}"
+                                                                           type="text" class="form-control"
                                                                            id="contactFullnameUpd">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="contactPhoneUpd">Phone</label>
-                                                                    <input name="contactPhoneUpd" type="text" value="${contact.contactPhone}"  class="form-control" id="contactPhoneUpd">
+                                                                    <input name="contactPhoneUpd" type="text"
+                                                                           value="${contact.contactPhone}"
+                                                                           class="form-control" id="contactPhoneUpd">
                                                                 </div>
                                                                 <div>
                                                                     <label for="importanceUpd">Importance</label>
-                                                                    <input id="importantUpd" type="hidden" name="importantUpd" value=""/>
+                                                                    <input id="importantUpd" type="hidden"
+                                                                           name="importantUpd" value=""/>
                                                                     <div id="importanceUpd">
                                                                         <div class="stars">
-                                                                            <input class="star star-5" id="5" type="radio" name="star"
+                                                                            <input class="star star-5" id="5"
+                                                                                   type="radio" name="star"
                                                                                    onclick="document.getElementById('importantUpd').value = '5'"/>
                                                                             <label class="star star-5" for="5"></label>
-                                                                            <input class="star star-4" id="4" type="radio" name="star"
+                                                                            <input class="star star-4" id="4"
+                                                                                   type="radio" name="star"
                                                                                    onclick="document.getElementById('importantUpd').value = '4'"/>
                                                                             <label class="star star-4" for="4"></label>
-                                                                            <input class="star star-3" id="3" type="radio" name="star"
+                                                                            <input class="star star-3" id="3"
+                                                                                   type="radio" name="star"
                                                                                    onclick="document.getElementById('importantUpd').value = '3'"/>
                                                                             <label class="star star-3" for="3"></label>
-                                                                            <input class="star star-2" id="2" type="radio" name="star"
+                                                                            <input class="star star-2" id="2"
+                                                                                   type="radio" name="star"
                                                                                    onclick="document.getElementById('importantUpd').value = '2'"/>
                                                                             <label class="star star-2" for="2"></label>
-                                                                            <input class="star star-1" id="1" type="radio" name="star"
+                                                                            <input class="star star-1" id="1"
+                                                                                   type="radio" name="star"
                                                                                    onclick="document.getElementById('importantUpd').value = '1'"/>
                                                                             <label class="star star-1" for="1"></label>
                                                                         </div>
@@ -251,18 +267,20 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="contactStatusUpd">Status</label>
-                                                                    <select name="contactStatusUpd" class="form-control" id="contactStatusUpd">
-                                                                        <c:if test="${contact.contactStatus == 'friend'}">
+                                                                    <select name="contactStatusUpd" class="form-control"
+                                                                            id="contactStatusUpd">
+                                                                        <c:if test="${contact.contactStatus eq 'friend'}">
                                                                             <option selected="selected">friend</option>
                                                                             <option>business</option>
                                                                             <option>unknown</option>
                                                                         </c:if>
-                                                                        <c:if test="${contact.contactStatus == 'business'}">
+                                                                        <c:if test="${contact.contactStatus eq 'business'}">
                                                                             <option>friend</option>
-                                                                            <option selected="selected">business</option>
+                                                                            <option selected="selected">business
+                                                                            </option>
                                                                             <option>unknown</option>
                                                                         </c:if>
-                                                                        <c:if test="${contact.contactStatus == 'unknown'}">
+                                                                        <c:if test="${contact.contactStatus eq 'unknown'}">
                                                                             <option>friend</option>
                                                                             <option>business</option>
                                                                             <option selected="selected">unknown</option>
@@ -271,13 +289,19 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="contactDescriptionUpd">Description</label>
-                                                                    <textarea name="contactDescriptionUpd" class="form-control" rows="5"
+                                                                    <textarea name="contactDescriptionUpd"
+                                                                              class="form-control" rows="5"
                                                                               id="contactDescriptionUpd">${contact.contactDescription}</textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="submit" class="btn btn-default">Update</button>
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                               <%-- <input id="updatingContactId" type="hidden"
+                                                                       value="${contact.id}" name="updatingContactId"/>--%>
+                                                                <button type="submit" class="btn btn-default">Update
+                                                                </button>
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">Close
+                                                                </button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -327,10 +351,26 @@
                     </c:if>
                 </div>
             </div>
-            <div class="tab-pane" id="2b">
-                <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for
-                    the tab</h3>
-            </div>
+            <div class="tab-pane tab" id="2b">
+                <div id="exTab4" class="container">
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                            <a href="#21b" data-toggle="tab">Email</a>
+                        </li>
+                        <li><a href="#22b" data-toggle="tab">Vkontakte</a>
+                        </li>
+                        <li><a href="#23b" data-toggle="tab">Facebook</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content clearfix">
+                        <div class="tab-pane active tab" id="21b">
+                        </div>
+                        <div class="tab-pane active tab" id="22b">
+                        </div>
+                        <div class="tab-pane active tab" id="23b">
+                        </div>
+                    </div>
         </div>
     </div>
 
