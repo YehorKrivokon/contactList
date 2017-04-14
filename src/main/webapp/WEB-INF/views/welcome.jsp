@@ -24,12 +24,13 @@
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
+    <form id="logoutForm" method="POST" action="${contextPath}/logout">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </h2>
+    <h2>Welcome ${pageContext.request.userPrincipal.name} | <a
+            onclick="document.forms['logoutForm'].submit()">Logout</a>
+    </h2>
     </c:if>
 
     <div id="exTab3" class="container">
@@ -295,8 +296,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                               <%-- <input id="updatingContactId" type="hidden"
-                                                                       value="${contact.id}" name="updatingContactId"/>--%>
+                                                                    <%-- <input id="updatingContactId" type="hidden"
+                                                                            value="${contact.id}" name="updatingContactId"/>--%>
                                                                 <button type="submit" class="btn btn-default">Update
                                                                 </button>
                                                                 <button type="button" class="btn btn-default"
@@ -365,18 +366,87 @@
 
                     <div class="tab-content clearfix">
                         <div class="tab-pane active tab" id="21b">
+                            <form action="${contextPath}/sendEmail?${_csrf.parameterName}=${_csrf.token}"
+                                  enctype="multipart/form-data" method="POST">
+                                <label for="emailFr">Email from</label>
+                                <input name="emailFr"
+                                       type="text" class="form-control"
+                                       id="emailFr">
+
+                                <label for="email">Email to</label>
+                                <input name="email"
+                                       type="text" class="form-control"
+                                       id="email">
+                                <label for="message">Message</label>
+                                <input name="message"
+                                       type="text" class="form-control"
+                                       id="message">
+
+                                <label for="time">Time for send</label>
+                                <input name="time"
+                                       type="text" class="form-control"
+                                       id="time">
+                                <button type="submit" class="btn btn-default">Send
+                                </button>
+                            </form>
                         </div>
                         <div class="tab-pane active tab" id="22b">
+                            <form action="${contextPath}/sendEmail?${_csrf.parameterName}=${_csrf.token}"
+                                  enctype="multipart/form-data" method="POST">
+                                <label for="idfr">Id from</label>
+                                <input name="idfr"
+                                       type="text" class="form-control"
+                                       id="idfr">
+
+                                <label for="idto">Id to</label>
+                                <input name="idto"
+                                       type="text" class="form-control"
+                                       id="idto">
+                                <label for="messagevk">Message</label>
+                                <input name="messagevk"
+                                       type="text" class="form-control"
+                                       id="messagevk">
+
+                                <label for="timevk">Time for send</label>
+                                <input name="timevk"
+                                       type="text" class="form-control"
+                                       id="timevk">
+                                <button type="submit" class="btn btn-default">Send
+                                </button>
+                            </form>
                         </div>
                         <div class="tab-pane active tab" id="23b">
+                            <form action="${contextPath}/sendEmail?${_csrf.parameterName}=${_csrf.token}"
+                                  enctype="multipart/form-data" method="POST">
+                                <label for="idfc">Id from</label>
+                                <input name="idfc"
+                                       type="text" class="form-control"
+                                       id="idfc">
+
+                                <label for="idtofc">Id to</label>
+                                <input name="idtofc"
+                                       type="text" class="form-control"
+                                       id="idtofc">
+                                <label for="messagefc">Message</label>
+                                <input name="messagefc"
+                                       type="text" class="form-control"
+                                       id="messagefc">
+
+                                <label for="timefc">Time for send</label>
+                                <input name="timefc"
+                                       type="text" class="form-control"
+                                       id="timefc">
+                                <button type="submit" class="btn btn-default">Send
+                                </button>
+                            </form>
                         </div>
                     </div>
-        </div>
-    </div>
+                </div>
+            </div>
 
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 
 </body>
 </html>
