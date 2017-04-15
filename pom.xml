@@ -77,7 +77,11 @@
       <artifactId>postgresql</artifactId>
       <version>9.4.1208-jdbc42-atlassian-hosted</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>3.2.0.RELEASE</version>
+    </dependency>
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>

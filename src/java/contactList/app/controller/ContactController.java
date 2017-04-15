@@ -8,6 +8,7 @@ import contactList.app.model.Contact;
 import contactList.app.model.User;
 import contactList.app.service.Avatar.AvatarHandler;
 import contactList.app.service.contact.ContactService;
+import contactList.app.service.messageSender.mail.MailSending;
 import contactList.app.service.security.SecurityService;
 import contactList.app.service.user.UserService;
 import contactList.app.validator.UserValidator;
@@ -107,6 +108,13 @@ public class ContactController {
         contact.setContactImportance(importantUpd);
         contact.setContactStatus(contactStatusUpd);
         new UpdateContactAction(contactService, contact).execute();
+        return "redirect:/welcome";
+    }
+
+    @RequestMapping(value="/sendEmail", method = RequestMethod.POST)
+    public String sendEmail(){
+        new MailSending().placeOrder();
+
         return "redirect:/welcome";
     }
 
