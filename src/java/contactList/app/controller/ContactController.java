@@ -3,26 +3,20 @@ package contactList.app.controller;
 import contactList.app.action.contact.CreateContactAction;
 import contactList.app.action.contact.DeleteContactAction;
 import contactList.app.action.contact.UpdateContactAction;
-import contactList.app.action.user.UpdateUserAction;
 import contactList.app.model.Contact;
 import contactList.app.model.User;
-import contactList.app.service.Avatar.AvatarHandler;
+import contactList.app.service.avatar.AvatarHandler;
 import contactList.app.service.contact.ContactService;
 import contactList.app.service.messageSender.mail.MailSending;
 import contactList.app.service.security.SecurityService;
 import contactList.app.service.user.UserService;
-import contactList.app.validator.UserValidator;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -111,10 +105,23 @@ public class ContactController {
         return "redirect:/welcome";
     }
 
+    @SuppressWarnings("webapp/WEB-INF/")
     @RequestMapping(value="/sendEmail", method = RequestMethod.POST)
     public String sendEmail(){
-        new MailSending().placeOrder();
+        String crunchifyConfFile = "mailbean.xml";
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
 
+        // @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
+        MailSending crunchifyEmailAPI = (MailSending) context.getBean("crunchifyEmail");
+        String toAddr = "eg.krivokon@gmail.com";
+        String fromAddr = "eg.krivokon@gmail.com";
+
+        // email subject
+        String subject = "Hey.. This email sent by Crunchify's Spring MVC Tutorial";
+
+        // email body
+        String body = "There you go.. You got an email.. Let's understand details on how Spring MVC works -- By Crunchify Admin";
+        crunchifyEmailAPI.sendEmail(toAddr, fromAddr, subject, body);
         return "redirect:/welcome";
     }
 

@@ -1,50 +1,37 @@
 package contactList.app.service.messageSender.mail;
 
-import org.springframework.mail.MailException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-/**
- * Created by комп on 15.04.2017.
- */
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.stereotype.Service;
+
+@Service("crunchifyEmail")
 public class MailSending {
-    private MailSender mailSender;
-    private SimpleMailMessage templateMessage;
 
-    public void setMailSender(MailSender mailSender) {
-        this.mailSender = mailSender;
+
+    @Bean
+    public JavaMailSenderImpl mailSender() {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+
+        javaMailSender.setProtocol("SMTP");
+        javaMailSender.setHost("127.0.0.1");
+        javaMailSender.setPort(25);
+
+        return javaMailSender;
     }
 
-    public void setTemplateMessage(SimpleMailMessage templateMessage) {
-        this.templateMessage = templateMessage;
-    }
+    @Autowired
+    private MailSender mailsending;
 
-    public void placeOrder() {
+    public void sendEmail(String toAddress, String fromAddress, String subject, String msgBody) {
 
-        // Do the business calculations...
-
-        // Call the collaborators to persist the order...
-
-        // Create a thread safe "copy" of the template message and customize it
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("eg.krivokon@gmail.com");
-        msg.setText(
-                "Dear " + ", thank you for placing order. Your order number is ");
-        try{
-            new MailSender() {
-                @Override
-                public void send(SimpleMailMessage simpleMailMessage) throws MailException {
-
-                }
-
-                @Override
-                public void send(SimpleMailMessage[] simpleMailMessages) throws MailException {
-
-                }
-            }.send(msg);
-        }
-        catch (MailException ex) {
-            // simply log it and go on...
-            System.err.println(ex.getMessage());
-        }
+        msg.setFrom(fromAddress);
+        msg.setTo(toAddress);
+        msg.setSubject(subject);
+        msg.setText(msgBody);
+        mailsending.send(msg);
     }
 }

@@ -1,4 +1,4 @@
-package contactList.app.service.Avatar;
+package contactList.app.service.avatar;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.multipart.MultipartFile;

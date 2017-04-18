@@ -8,9 +8,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <!-- this is your package structure where you create file CrunchifyEmailAPI.java
-        and CrunchifyEmailTest.java -->
-    <context:component-scan base-package="contactList.app" />
+    <context:component-scan base-package="contactList.app.service.messageSender.mail" />
 
     <!-- Production implementation of the JavaMailSender interface, supporting
         both JavaMail MimeMessages and Spring SimpleMailMessages -->
