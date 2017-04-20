@@ -7,13 +7,13 @@ import contactList.app.model.Contact;
 import contactList.app.model.User;
 import contactList.app.service.avatar.AvatarHandler;
 import contactList.app.service.contact.ContactService;
-import contactList.app.service.messageSender.mail.MailSending;
+import contactList.app.service.messageSender.mail.ApplicationMailer;
 import contactList.app.service.security.SecurityService;
 import contactList.app.service.user.UserService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +29,9 @@ import java.util.List;
  */
 @Controller
 public class ContactController {
+    @Autowired
+    ApplicationMailer applicationMailer;
+
     @Autowired
     private UserService userService;
 
@@ -107,21 +110,13 @@ public class ContactController {
 
     @SuppressWarnings("webapp/WEB-INF/")
     @RequestMapping(value="/sendEmail", method = RequestMethod.POST)
-    public String sendEmail(){
-        String crunchifyConfFile = "mailbean.xml";
-        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
-
-        // @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
-        MailSending crunchifyEmailAPI = (MailSending) context.getBean("crunchifyEmail");
-        String toAddr = "eg.krivokon@gmail.com";
-        String fromAddr = "eg.krivokon@gmail.com";
-
-        // email subject
-        String subject = "Hey.. This email sent by Crunchify's Spring MVC Tutorial";
-
-        // email body
-        String body = "There you go.. You got an email.. Let's understand details on how Spring MVC works -- By Crunchify Admin";
-        crunchifyEmailAPI.sendEmail(toAddr, fromAddr, subject, body);
+    public String sendEmail(){/*
+        //Create the application context
+        ApplicationContext context = new FileSystemXmlApplicationContext("application-context.xml");
+        ApplicationMailer mailer = (ApplicationMailer) context.getBean("mailService");
+*/
+        //Get the mailer instance
+        applicationMailer.sendMail("eg.krivokon@gmail.com","aaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaa");
         return "redirect:/welcome";
     }
 
