@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="my_entity_seq_gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator="my_entity_seq_gen")
     @SequenceGenerator(name="my_entity_seq_gen", sequenceName="HIBERNATE_SEQUENCE")
     private Long id;
 

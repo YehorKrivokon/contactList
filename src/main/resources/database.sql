@@ -13,6 +13,17 @@ CREATE TABLE contacts(
   contactdescription TEXT NOT NULL,
   contactimportance TEXT NOT NULL,
   contactstatus TEXT NOT NULL,
+  avatar bytea[],
   user_id INT NOT NULL,
   FOREIGN KEY (user_id)REFERENCES users(id)
-)
+);
+
+CREATE SEQUENCE my_entity_seq_gen;
+
+ALTER TABLE users
+  ALTER COLUMN id
+  SET DEFAULT NEXTVAL('my_entity_seq_gen');
+
+ALTER TABLE contacts
+  ALTER COLUMN id
+  SET DEFAULT NEXTVAL('my_entity_seq_gen');

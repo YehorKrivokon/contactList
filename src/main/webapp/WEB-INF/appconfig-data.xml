@@ -13,8 +13,8 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/contactList"/>
-        <property name="username" value="dbuser"/>
-        <property name="password" value="dbtest"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value=""/>
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
