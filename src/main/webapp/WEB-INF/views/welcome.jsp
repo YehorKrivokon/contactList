@@ -36,9 +36,9 @@
     <div id="exTab3" class="container">
         <ul class="nav nav-pills">
             <li class="active">
-                <a href="#1b" data-toggle="tab">Contacts</a>
+                <a href="#1b" data-toggle="tab">Employeers</a>
             </li>
-            <li><a href="#2b" data-toggle="tab">Message controller</a>
+            <li><a href="#2b" data-toggle="tab">Work time</a>
             </li>
         </ul>
 
@@ -356,11 +356,13 @@
                 <div id="exTab4" class="container">
                     <ul class="nav nav-pills">
                         <li class="active">
-                            <a href="#21b" data-toggle="tab">Email</a>
+                            <a href="#21b" data-toggle="tab">Office work</a>
                         </li>
-                        <li><a href="#22b" data-toggle="tab">Vkontakte</a>
+                        <li><a href="#22b" data-toggle="tab">Business trip</a>
                         </li>
-                        <li><a href="#23b" data-toggle="tab">Facebook</a>
+                        <li><a href="#23b" data-toggle="tab">Weekend</a>
+                        </li>
+                        <li><a href="#24b" data-toggle="tab">Dayoff</a>
                         </li>
                     </ul>
 
@@ -368,75 +370,278 @@
                         <div class="tab-pane active tab" id="21b">
                             <form action="${contextPath}/sendEmail?${_csrf.parameterName}=${_csrf.token}"
                                   enctype="multipart/form-data" method="POST">
-                                <label for="emailFr">Email from</label>
+                                <label for="emailFr">Employee id</label>
                                 <input name="emailFr"
                                        type="text" class="form-control"
                                        id="emailFr">
 
-                                <label for="email">Email to</label>
+                                <label for="email">Time count</label>
                                 <input name="email"
                                        type="text" class="form-control"
                                        id="email">
-                                <label for="message">Message</label>
+                                <label for="message">Description</label>
                                 <input name="message"
                                        type="text" class="form-control"
                                        id="message">
-
-                                <label for="time">Time for send</label>
-                                <input name="time"
-                                       type="text" class="form-control"
-                                       id="time">
-                                <button type="submit" class="btn btn-default">Send
+                                <button type="submit" class="btn btn-default">Add field
                                 </button>
                             </form>
                         </div>
                         <div class="tab-pane active tab" id="22b">
                             <form action="${contextPath}/sendEmail?${_csrf.parameterName}=${_csrf.token}"
                                   enctype="multipart/form-data" method="POST">
-                                <label for="idfr">Id from</label>
+                                <label for="idfr">Employee id</label>
                                 <input name="idfr"
                                        type="text" class="form-control"
                                        id="idfr">
 
-                                <label for="idto">Id to</label>
+                                <label for="idto">Time count</label>
                                 <input name="idto"
                                        type="text" class="form-control"
                                        id="idto">
-                                <label for="messagevk">Message</label>
+                                <label for="messagevk">Contributions</label>
                                 <input name="messagevk"
                                        type="text" class="form-control"
                                        id="messagevk">
 
-                                <label for="timevk">Time for send</label>
-                                <input name="timevk"
-                                       type="text" class="form-control"
-                                       id="timevk">
-                                <button type="submit" class="btn btn-default">Send
+                                <button type="submit" class="btn btn-default">Add field
                                 </button>
                             </form>
+
+
+                            <c:if test="${business_trips.size() != 0}">
+                                <table class="table table-hover table-bordered tableContact">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Employee</th>
+                                        <th>Time count</th>
+                                        <th>Distributions</th>
+                                    </tr>
+                                    <c:forEach var="business_trip" items="${business_trips}">
+                                        <tr class="">
+                                            <td></td>
+                                            <td><c:out value="${contact.contactLogin}"/></td>
+                                            <td><c:out value="${contact.contactPhone}"/></td>
+                                            <td><c:out value="${contact.contactStatus}"/></td>
+                                            <td>
+                                                <form>
+                                                    <button id="${contact.id}_det" type="button"
+                                                            class="btn btn-primary btn-lg outline action" data-toggle="modal"
+                                                            data-target="#detailsContact${contact.id}">Details
+                                                    </button>
+                                                </form>
+                                                <div class="modal fade" id="detailsContact${contact.id}" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">
+                                                                    &times;
+                                                                </button>
+                                                                <h4 class="modal-title">Contact detail information</h4>
+                                                            </div>
+                                                            <div class="modal-body details">
+                                                                <table class="detailsTable">
+                                                                    <tr>
+                                                                        <td style="display:none;"></td>
+                                                                        <td>
+                                                                            <img src="${contextPath}/avatar/${contact.id}"
+                                                                                 width="150"/>
+                                                                        </td>
+                                                                        <td class="contactInfo">
+                                                                            <h4>Login: ${contact.contactLogin}</h4>
+                                                                            <h4>Fullname: ${contact.contactFullname}</h4>
+                                                                            <h4>Phone: ${contact.contactPhone}</h4>
+                                                                            <h4>Status: ${contact.contactStatus}</h4>
+                                                                            <h4>Importance: ${contact.contactImportance} /
+                                                                                5</h4>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="display:none;"></td>
+                                                                        <td colspan="2" class="description">
+                                                                            <h4>Description</h4>
+                                                                            <h5>${contact.contactDescription}</h5>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <form action="${contextPath}/update/${contact.id}?${_csrf.parameterName}=${_csrf.token}"
+                                                      enctype="multipart/form-data" method="POST">
+                                                    <button id="${contact.id}_upd" type="button"
+                                                            class="btn btn-primary btn-lg outline action" data-toggle="modal"
+                                                            data-target="#updateContact">Update
+                                                    </button>
+                                                    <div class="modal fade updateTr" id="updateContact" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        &times;
+                                                                    </button>
+                                                                    <h4 class="modal-title">Update contact</h4>
+                                                                </div>
+                                                                <form action="${contextPath}/update/?${_csrf.parameterName}=${_csrf.token}"
+                                                                      enctype="multipart/form-data" method="POST">
+                                                                    <div class="modal-body">
+                                                                        <img src="${contextPath}/avatar/${contact.id}"
+                                                                             width="150"/>
+                                                                        <div class="form-group">
+                                                                            <label for="avatarUpd">Avatar</label>
+                                                                            <input id="avatarUpd" type="file" name="avatarUpd">
+                                                                        </div>
+                                                                            <%--<p>Write information about your new contact</p>--%>
+                                                                        <div class="form-group">
+                                                                            <label for="contactLoginUpd">Login</label>
+                                                                            <input name="contactLoginUpd"
+                                                                                   value="${contact.contactLogin}" type="text"
+                                                                                   class="form-control" id="contactLoginUpd">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="contactFullnameUpd">Fullname</label>
+                                                                            <input name="contactFullnameUpd"
+                                                                                   value="${contact.contactFullname}"
+                                                                                   type="text" class="form-control"
+                                                                                   id="contactFullnameUpd">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="contactPhoneUpd">Phone</label>
+                                                                            <input name="contactPhoneUpd" type="text"
+                                                                                   value="${contact.contactPhone}"
+                                                                                   class="form-control" id="contactPhoneUpd">
+                                                                        </div>
+                                                                        <div>
+                                                                            <label for="importanceUpd">Importance</label>
+                                                                            <input id="importantUpd" type="hidden"
+                                                                                   name="importantUpd" value=""/>
+                                                                            <div id="importanceUpd">
+                                                                                <div class="stars">
+                                                                                    <input class="star star-5" id="5"
+                                                                                           type="radio" name="star"
+                                                                                           onclick="document.getElementById('importantUpd').value = '5'"/>
+                                                                                    <label class="star star-5" for="5"></label>
+                                                                                    <input class="star star-4" id="4"
+                                                                                           type="radio" name="star"
+                                                                                           onclick="document.getElementById('importantUpd').value = '4'"/>
+                                                                                    <label class="star star-4" for="4"></label>
+                                                                                    <input class="star star-3" id="3"
+                                                                                           type="radio" name="star"
+                                                                                           onclick="document.getElementById('importantUpd').value = '3'"/>
+                                                                                    <label class="star star-3" for="3"></label>
+                                                                                    <input class="star star-2" id="2"
+                                                                                           type="radio" name="star"
+                                                                                           onclick="document.getElementById('importantUpd').value = '2'"/>
+                                                                                    <label class="star star-2" for="2"></label>
+                                                                                    <input class="star star-1" id="1"
+                                                                                           type="radio" name="star"
+                                                                                           onclick="document.getElementById('importantUpd').value = '1'"/>
+                                                                                    <label class="star star-1" for="1"></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="contactStatusUpd">Status</label>
+                                                                            <select name="contactStatusUpd" class="form-control"
+                                                                                    id="contactStatusUpd">
+                                                                                <c:if test="${contact.contactStatus eq 'friend'}">
+                                                                                    <option selected="selected">friend</option>
+                                                                                    <option>business</option>
+                                                                                    <option>unknown</option>
+                                                                                </c:if>
+                                                                                <c:if test="${contact.contactStatus eq 'business'}">
+                                                                                    <option>friend</option>
+                                                                                    <option selected="selected">business
+                                                                                    </option>
+                                                                                    <option>unknown</option>
+                                                                                </c:if>
+                                                                                <c:if test="${contact.contactStatus eq 'unknown'}">
+                                                                                    <option>friend</option>
+                                                                                    <option>business</option>
+                                                                                    <option selected="selected">unknown</option>
+                                                                                </c:if>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="contactDescriptionUpd">Description</label>
+                                                                            <textarea name="contactDescriptionUpd"
+                                                                                      class="form-control" rows="5"
+                                                                                      id="contactDescriptionUpd">${contact.contactDescription}</textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                            <%-- <input id="updatingContactId" type="hidden"
+                                                                                    value="${contact.id}" name="updatingContactId"/>--%>
+                                                                        <button type="submit" class="btn btn-default">Update
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-default"
+                                                                                data-dismiss="modal">Close
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form>
+                                                    <button id="${contact.id}_del" type="button"
+                                                            class="btn btn-primary btn-lg outline action" data-toggle="modal"
+                                                            data-target="#deleteContact${contact.id}"
+                                                    >Delete
+                                                    </button>
+                                                </form>
+                                                <div class="modal fade" id="deleteContact${contact.id}" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">
+                                                                    &times;
+                                                                </button>
+                                                                <h4 class="modal-title">Do you really want to delete this
+                                                                    contact?</h4>
+                                                            </div>
+                                                            <form action="${contextPath}/deleteContact" method="POST">
+                                                                <div class="modal-footer">
+                                                                    <input id="deletingContactId" type="hidden"
+                                                                           value="${contact.id}" name="deletingContactId"/>
+                                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                                           value="${_csrf.token}"/>
+                                                                    <button type="submit" class="btn btn-default">Delete
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                            </c:if>
+
+
+
                         </div>
                         <div class="tab-pane active tab" id="23b">
                             <form action="${contextPath}/sendEmail?${_csrf.parameterName}=${_csrf.token}"
                                   enctype="multipart/form-data" method="POST">
-                                <label for="idfc">Id from</label>
+                                <label for="idfc">Employee id</label>
                                 <input name="idfc"
                                        type="text" class="form-control"
                                        id="idfc">
 
-                                <label for="idtofc">Id to</label>
+                                <label for="idtofc">Time count</label>
                                 <input name="idtofc"
                                        type="text" class="form-control"
                                        id="idtofc">
-                                <label for="messagefc">Message</label>
-                                <input name="messagefc"
-                                       type="text" class="form-control"
-                                       id="messagefc">
-
-                                <label for="timefc">Time for send</label>
-                                <input name="timefc"
-                                       type="text" class="form-control"
-                                       id="timefc">
-                                <button type="submit" class="btn btn-default">Send
+                                <button type="submit" class="btn btn-default">Add field
                                 </button>
                             </form>
                         </div>

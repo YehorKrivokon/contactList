@@ -1,11 +1,5 @@
 package contactList.app.model;
 
-import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-
 import javax.persistence.*;
 
 @Entity
@@ -23,7 +17,7 @@ public class BusinessTrip {
     private Float contributions;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Employee employee;
+    private Contact contact;
 
     public BusinessTrip() {
     }
@@ -41,7 +35,7 @@ public class BusinessTrip {
     }
 
     public Float getContributions(){
-        return this.contributions;
+        return contributions;
     }
 
     public void setTime_count(Integer time_count){
@@ -49,14 +43,14 @@ public class BusinessTrip {
     }
 
     public Integer getTime_count(){
-        return this.time_count;
+        return time_count;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

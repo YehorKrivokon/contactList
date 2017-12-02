@@ -1,6 +1,8 @@
 package contactList.app.model;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -46,6 +50,10 @@ public class Contact {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
+
+    @LazyCollection(LazyCollectionOption.TRUE)
+    @OneToMany
+    private List<BusinessTrip> businessTripList = new ArrayList<BusinessTrip>();
 
     public Contact() {
     }
