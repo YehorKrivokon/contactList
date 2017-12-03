@@ -38,6 +38,11 @@ public class BusinessTripServiceImpl implements BusinessTripService {
     }
 
     @Override
+    public List<BusinessTrip> getAllBusinessTrips() {
+        return businessTripDao.getAllBusinessTrips();
+    }
+
+    @Override
     public BusinessTrip getBusinessTripById(Long id) {
         return businessTripDao.findByBusinessTripId(id);
     }

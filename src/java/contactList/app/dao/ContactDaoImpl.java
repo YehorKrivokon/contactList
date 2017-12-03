@@ -1,5 +1,6 @@
 package contactList.app.dao;
 
+import contactList.app.model.BusinessTrip;
 import contactList.app.model.Contact;
 import contactList.app.model.User;
 import contactList.app.service.security.SecurityService;
@@ -57,6 +58,13 @@ public class ContactDaoImpl implements ContactDao{
     @Override
     public void delete(Contact contact) {
         entityManager.remove(entityManager.contains(contact) ? contact : entityManager.merge(contact));
+    }
+
+    @Override
+    public List<BusinessTrip> getContactBusinessTripList(Long id) {
+        query = entityManager.createQuery("SELECT DISTINCT c FROM BusinessTrip c WHERE c.contact_id = :contact1", BusinessTrip.class);
+        query.setParameter("contact1", id);
+        return (List<BusinessTrip>) query.getResultList();
     }
 
     @Override

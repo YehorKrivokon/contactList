@@ -3,8 +3,8 @@ package contactList.app.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="business_trip")
-public class BusinessTrip {
+@Table(name="dayoff")
+public class Dayoff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator="my_entity_seq_gen")
     @SequenceGenerator(name="my_entity_seq_gen", sequenceName="HIBERNATE_SEQUENCE")
@@ -13,18 +13,18 @@ public class BusinessTrip {
     @Column(name = "time_count")
     private Integer time_count;
 
-    @Column(name = "contributions")
-    private Float contributions;
+    @Column(name = "cause")
+    private String cause;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Contact contact;
 
-    public BusinessTrip() {
+    public Dayoff() {
     }
 
-    public BusinessTrip(String businessTripTimeCount, String businessTripContributions, Contact contact) {
-        this.time_count = Integer.valueOf(businessTripTimeCount);
-        this.contributions = Float.valueOf(businessTripContributions);
+    public Dayoff(String timeCount, String cause, Contact contact) {
+        this.time_count = Integer.valueOf(timeCount);
+        this.cause = cause;
         this.contact = contact;
     }
 
@@ -36,12 +36,12 @@ public class BusinessTrip {
         this.id = id;
     }
 
-    public void setContributions(Float contributions) {
-        this.contributions = contributions;
+    public void setCause(String cause) {
+        this.cause = cause;
     }
 
-    public Float getContributions(){
-        return contributions;
+    public String getCause(){
+        return cause;
     }
 
     public void setTime_count(Integer time_count){

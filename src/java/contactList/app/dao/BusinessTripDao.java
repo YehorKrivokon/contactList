@@ -14,6 +14,6 @@ public interface BusinessTripDao {
     void updateBusinessTrip(BusinessTrip businessTripToUpgrade);
     void add(BusinessTrip businessTrip);
     void delete(BusinessTrip businessTrip);
-
+    List<BusinessTrip> getAllBusinessTrips();
     List<BusinessTrip> getEmployeeBusinessTripList(Contact contact);
 }

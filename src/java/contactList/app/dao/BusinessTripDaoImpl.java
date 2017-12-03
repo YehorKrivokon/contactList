@@ -63,4 +63,10 @@ public class BusinessTripDaoImpl implements BusinessTripDao{
         query.setParameter("contact1", contact.getId());
         return (List<BusinessTrip>) query.getResultList();
     }
+
+    @Override
+    public List<BusinessTrip> getAllBusinessTrips() {
+        query = entityManager.createQuery("SELECT DISTINCT b FROM BusinessTrip b", BusinessTrip.class);
+        return (List<BusinessTrip>) query.getResultList();
+    }
 }

@@ -1,5 +1,6 @@
 package contactList.app.dao;
 
+import contactList.app.model.BusinessTrip;
 import contactList.app.model.Contact;
 import contactList.app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +15,6 @@ public interface ContactDao {
     void updateContact(Contact contactToUpgrade);
     void add(Contact contact);
     void delete(Contact contact);
-
+    List<BusinessTrip> getContactBusinessTripList(Long id);
     List<Contact> getUserContactList(User user);
 }

@@ -13,6 +13,7 @@ public interface BusinessTripService {
     void save(BusinessTrip businessTrip);
     void update(BusinessTrip businessTrip);
     List<BusinessTrip> getEmployeeBusinessTripList(Contact contact);
+    List<BusinessTrip> getAllBusinessTrips();
     BusinessTrip getBusinessTripById(Long id);
     void delete(BusinessTrip businessTrip);
 }

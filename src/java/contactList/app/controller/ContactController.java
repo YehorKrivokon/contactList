@@ -3,10 +3,14 @@ package contactList.app.controller;
 import contactList.app.action.contact.CreateContactAction;
 import contactList.app.action.contact.DeleteContactAction;
 import contactList.app.action.contact.UpdateContactAction;
+import contactList.app.model.BusinessTrip;
 import contactList.app.model.Contact;
+import contactList.app.model.Dayoff;
 import contactList.app.model.User;
 import contactList.app.service.avatar.AvatarHandler;
+import contactList.app.service.business_trip.BusinessTripService;
 import contactList.app.service.contact.ContactService;
+import contactList.app.service.dayoff.DayoffService;
 import contactList.app.service.messageSender.mail.ApplicationMailer;
 import contactList.app.service.security.SecurityService;
 import contactList.app.service.user.UserService;
@@ -41,6 +45,12 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
+    @Autowired
+    private BusinessTripService businessTripService;
+
+    @Autowired
+    private DayoffService dayoffService;
+
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
         List<Contact> contacts = new ArrayList<>();
@@ -48,6 +58,11 @@ public class ContactController {
         if (user != null) {
             contacts = contactService.getUserContactList(user);
         }
+
+        List<BusinessTrip> businessTripList = businessTripService.getAllBusinessTrips();
+        List<Dayoff> dayoffFullList = dayoffService.getAllDayoff();
+        model.addAttribute("businessTripList", businessTripList);
+        model.addAttribute("dayoffFullList", dayoffFullList);
         model.addAttribute("contacts", contacts);
         return securityService.returnPageByCheckingOnAnonymous("welcome", "login");
     }
@@ -68,6 +83,7 @@ public class ContactController {
         List<Contact> contactList = contactService.getUserContactList(user);
         contactList.add(contact);
         user.setUserListOfContacts(contactList);
+
         return "redirect:/welcome";
     }
 

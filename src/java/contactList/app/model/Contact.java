@@ -1,12 +1,17 @@
 package contactList.app.model;
 
+import contactList.app.dao.BusinessTripDao;
+import contactList.app.dao.ContactDao;
+import contactList.app.service.contact.ContactService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -51,9 +56,27 @@ public class Contact {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
 
-    @LazyCollection(LazyCollectionOption.TRUE)
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contact", cascade = CascadeType.ALL)
     private List<BusinessTrip> businessTripList = new ArrayList<BusinessTrip>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contact", cascade = CascadeType.ALL)
+    private List<Dayoff> dayoffList = new ArrayList<Dayoff>();
+
+    public Integer getAllBusinessTrip() {
+        Integer a = 0;
+        for (BusinessTrip bt: businessTripList) {
+            a += bt.getTime_count();
+        }
+        return a;
+    }
+
+    public Float getAllBusinessTripContr() {
+        Float a = 0f;
+        for (BusinessTrip bt: businessTripList) {
+            a += bt.getContributions();
+        }
+        return a;
+    }
 
     public Contact() {
     }
@@ -62,11 +85,27 @@ public class Contact {
         this.contactLogin = contactLogin;
         this.contactFullname = contactFullname;
         this.contactPhone = contactPhone;
-        this. contactDescription = contactDescription;
+        this.contactDescription = contactDescription;
         this.contactStatus = contactStatus;
         this.contactImportance = important;
         this.avatar = avatar;
         this.user = user;
+    }
+
+    public void setDayoffList(List<Dayoff> dayoffList) {
+        this.dayoffList = dayoffList;
+    }
+
+    public List<Dayoff> gettDayoffList() {
+        return dayoffList;
+    }
+
+    public void setBusinessTripList(List<BusinessTrip> businessTripList) {
+        this.businessTripList = businessTripList;
+    }
+
+    public List<BusinessTrip> getBusinessTripList() {
+        return businessTripList;
     }
 
     public Long getId() {
