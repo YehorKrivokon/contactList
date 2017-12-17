@@ -62,6 +62,9 @@ public class Contact {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "contact", cascade = CascadeType.ALL)
     private List<Dayoff> dayoffList = new ArrayList<Dayoff>();
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contact", cascade = CascadeType.ALL)
+    private List<Weekend> weekendList = new ArrayList<Weekend>();
+
     public Integer getAllBusinessTrip() {
         Integer a = 0;
         for (BusinessTrip bt: businessTripList) {
@@ -74,6 +77,22 @@ public class Contact {
         Float a = 0f;
         for (BusinessTrip bt: businessTripList) {
             a += bt.getContributions();
+        }
+        return a;
+    }
+
+    public int getAllDayoffs() {
+        int a = 0;
+        for (Dayoff d: dayoffList) {
+            a += d.getTime_count();
+        }
+        return a;
+    }
+
+    public int getAllWeekends() {
+        int a = 0;
+        for (Weekend w: weekendList) {
+            a += w.getTime_count();
         }
         return a;
     }
@@ -96,8 +115,14 @@ public class Contact {
         this.dayoffList = dayoffList;
     }
 
-    public List<Dayoff> gettDayoffList() {
+    public List<Dayoff> getDayoffList() {
         return dayoffList;
+    }
+
+    public List<Weekend> getWeekendList() {return weekendList; }
+
+    public void setWeekendList(List<Weekend> weekendList) {
+        this.weekendList = weekendList;
     }
 
     public void setBusinessTripList(List<BusinessTrip> businessTripList) {

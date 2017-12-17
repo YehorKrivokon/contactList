@@ -34,6 +34,14 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
+    public List<Contact> getContactsByDepartment(String status) {return contactDao.getContactsByDepartment(status);}
+
+    @Override
+    public List<Contact> getContactsWithDayoff(String contactStatusPage) {
+        return contactDao.getContactsWithDayoff(contactStatusPage);
+    }
+
+    @Override
     public List<Contact> getUserContactList(User user) {
         return contactDao.getUserContactList(user);
     }

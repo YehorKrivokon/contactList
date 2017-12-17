@@ -40,10 +40,11 @@ public class BusinessTripController {
     @RequestMapping(value = {"/saveBusinessTrip"}, method = RequestMethod.POST)
     public String saveBusinessTrip(Model model,
                              @RequestParam String businessTripEmpId,
+                             @RequestParam String date,
                              @RequestParam String businessTripTimeCount,
                              @RequestParam String businessTripContributions) {
-        Contact contact = contactService.getContactById(Long.valueOf(businessTripEmpId));
-        BusinessTrip businessTrip = new BusinessTrip(businessTripTimeCount, businessTripContributions, contact);
+        Contact contact = contactService.getContactById(Long.valueOf(businessTripEmpId.substring(0, businessTripEmpId.indexOf(" "))));
+        BusinessTrip businessTrip = new BusinessTrip(businessTripTimeCount, date, businessTripContributions, contact);
         new CreateBusinessTripAction(businessTripService, businessTrip).execute();
         List<BusinessTrip> businessTripList = businessTripService.getEmployeeBusinessTripList(contact);
         businessTripList.add(businessTrip);

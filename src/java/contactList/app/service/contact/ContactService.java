@@ -10,6 +10,8 @@ import java.util.List;
  * Created by комп on 07.04.2017.
  */
 public interface ContactService {
+    List<Contact> getContactsByDepartment(String status);
+    List<Contact> getContactsWithDayoff(String contactStatusPage);
     void save(Contact cntact);
     void update(Contact contact);
     List<Contact> getUserContactList(User user);

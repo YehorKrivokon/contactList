@@ -37,9 +37,10 @@ public class DayoffController {
     public String saveBusinessTrip(Model model,
                              @RequestParam String dayoffEmpId,
                              @RequestParam String dayoffTimeCount,
-                             @RequestParam String dayoffDescription) {
-        Contact contact = contactService.getContactById(Long.valueOf(dayoffEmpId));
-        Dayoff dayoff = new Dayoff(dayoffTimeCount, dayoffDescription, contact);
+                             @RequestParam String dayoffDescription,
+                             @RequestParam String dayoffDescription1) {
+        Contact contact = contactService.getContactById(Long.valueOf(dayoffEmpId.substring(0, dayoffEmpId.indexOf(" "))));
+        Dayoff dayoff = new Dayoff(dayoffTimeCount, dayoffDescription, dayoffDescription1, contact);
         new CreateDayoffAction(dayoffService, dayoff).execute();
         List<Dayoff> dayoffList = dayoffService.getEmployeeDayoffList(contact);
         dayoffList.add(dayoff);

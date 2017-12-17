@@ -16,15 +16,19 @@ public class Dayoff {
     @Column(name = "cause")
     private String cause;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Contact contact;
 
     public Dayoff() {
     }
 
-    public Dayoff(String timeCount, String cause, Contact contact) {
+    public Dayoff(String timeCount, String cause, String description, Contact contact) {
         this.time_count = Integer.valueOf(timeCount);
         this.cause = cause;
+        this.description = description;
         this.contact = contact;
     }
 
@@ -58,5 +62,13 @@ public class Dayoff {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

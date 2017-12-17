@@ -11,6 +11,8 @@ import java.util.List;
  * Created by комп on 05.04.2017.
  */
 public interface ContactDao {
+    List<Contact> getContactsByDepartment(String status);
+    List<Contact> getContactsWithDayoff(String contactStatusPage);
     Contact findByContactId(Long id);
     void updateContact(Contact contactToUpgrade);
     void add(Contact contact);

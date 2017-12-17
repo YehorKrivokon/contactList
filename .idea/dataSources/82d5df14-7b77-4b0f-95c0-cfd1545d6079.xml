@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-11-25.18:35:31.018</IntrospectionTimestamp>
-      <IntrospectionStateNumber>54403</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-12-09.17:25:30.768</IntrospectionTimestamp>
+      <IntrospectionStateNumber>54440</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -34,115 +34,379 @@
       <StateNumber>54401</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <table id="10" parent="3" name="contacts">
-      <ObjectId>193923</ObjectId>
-      <StateNumber>54400</StateNumber>
+    <table id="10" parent="3" name="business_trip">
+      <ObjectId>193985</ObjectId>
+      <StateNumber>54415</StateNumber>
     </table>
-    <table id="11" parent="3" name="users">
+    <table id="11" parent="3" name="contacts">
+      <ObjectId>193923</ObjectId>
+      <StateNumber>54439</StateNumber>
+    </table>
+    <table id="12" parent="3" name="dayoff">
+      <ObjectId>193952</ObjectId>
+      <StateNumber>54412</StateNumber>
+    </table>
+    <table id="13" parent="3" name="department">
+      <ObjectId>194003</ObjectId>
+      <StateNumber>54438</StateNumber>
+    </table>
+    <table id="14" parent="3" name="general_time">
+      <ObjectId>193941</ObjectId>
+      <StateNumber>54411</StateNumber>
+    </table>
+    <table id="15" parent="3" name="office_work">
+      <ObjectId>193963</ObjectId>
+      <StateNumber>54413</StateNumber>
+    </table>
+    <table id="16" parent="3" name="users">
       <ObjectId>193915</ObjectId>
       <StateNumber>54400</StateNumber>
     </table>
-    <column id="12" parent="10" name="id">
+    <table id="17" parent="3" name="weekend">
+      <ObjectId>193974</ObjectId>
+      <StateNumber>54414</StateNumber>
+    </table>
+    <column id="18" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54415</StateNumber>
+      <DefaultExpression>nextval(&apos;my_entity_seq_gen&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="19" parent="10" name="contact_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54423</StateNumber>
+    </column>
+    <column id="20" parent="10" name="time_count">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54415</StateNumber>
+    </column>
+    <column id="21" parent="10" name="contributions">
+      <Position>4</Position>
+      <DataType>real|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54415</StateNumber>
+    </column>
+    <index id="22" parent="10" name="business_trip_pkey">
+      <ObjectId>193988</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="23" parent="10" name="business_trip_pkey">
+      <ObjectId>193989</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>business_trip_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="24" parent="10" name="business_trip_employee_id_fkey">
+      <ObjectId>193990</ObjectId>
+      <ColNames>contact_id</ColNames>
+      <RefTableName>contacts</RefTableName>
+      <RefKeyName>contacts_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="25" parent="11" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54403</StateNumber>
       <DefaultExpression>nextval(&apos;my_entity_seq_gen&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="13" parent="10" name="contactlogin">
+    <column id="26" parent="11" name="contactlogin">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54400</StateNumber>
     </column>
-    <column id="14" parent="10" name="contactfullname">
+    <column id="27" parent="11" name="contactfullname">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54400</StateNumber>
     </column>
-    <column id="15" parent="10" name="contactphone">
-      <Position>4</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>54400</StateNumber>
-    </column>
-    <column id="16" parent="10" name="contactdescription">
+    <column id="28" parent="11" name="contactdescription">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54400</StateNumber>
     </column>
-    <column id="17" parent="10" name="contactimportance">
+    <column id="29" parent="11" name="contactimportance">
       <Position>6</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54400</StateNumber>
     </column>
-    <column id="18" parent="10" name="contactstatus">
+    <column id="30" parent="11" name="contactstatus">
       <Position>7</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54400</StateNumber>
     </column>
-    <column id="19" parent="10" name="avatar">
-      <Position>8</Position>
-      <DataType>bytea[]|0</DataType>
-      <StateNumber>54400</StateNumber>
-    </column>
-    <column id="20" parent="10" name="user_id">
+    <column id="31" parent="11" name="user_id">
       <Position>9</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54400</StateNumber>
     </column>
-    <index id="21" parent="10" name="contacts_pkey">
+    <column id="32" parent="11" name="avatar">
+      <Position>10</Position>
+      <DataType>bytea|0</DataType>
+      <StateNumber>54406</StateNumber>
+    </column>
+    <column id="33" parent="11" name="contactphone">
+      <Position>11</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>54408</StateNumber>
+    </column>
+    <column id="34" parent="11" name="business_trip">
+      <Position>12</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>54428</StateNumber>
+    </column>
+    <column id="35" parent="11" name="dayoff">
+      <Position>14</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>54433</StateNumber>
+    </column>
+    <column id="36" parent="11" name="department_id">
+      <Position>15</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>54440</StateNumber>
+    </column>
+    <index id="37" parent="11" name="contacts_pkey">
       <ObjectId>193929</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="22" parent="10" name="contacts_pkey">
+    <key id="38" parent="11" name="contacts_pkey">
       <ObjectId>193930</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>contacts_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="23" parent="10" name="contacts_user_id_fkey">
+    <foreign-key id="39" parent="11" name="contacts_user_id_fkey">
       <ObjectId>193931</ObjectId>
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="24" parent="11" name="id">
+    <column id="40" parent="12" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54412</StateNumber>
+      <DefaultExpression>nextval(&apos;my_entity_seq_gen&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="41" parent="12" name="contact_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54432</StateNumber>
+    </column>
+    <column id="42" parent="12" name="cause">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54412</StateNumber>
+    </column>
+    <column id="43" parent="12" name="time_count">
+      <Position>4</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54412</StateNumber>
+    </column>
+    <index id="44" parent="12" name="dayoff_pkey">
+      <ObjectId>193955</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="45" parent="12" name="dayoff_pkey">
+      <ObjectId>193956</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>dayoff_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="46" parent="12" name="dayoff_employee_id_fkey">
+      <ObjectId>193957</ObjectId>
+      <ColNames>contact_id</ColNames>
+      <RefTableName>contacts</RefTableName>
+      <RefKeyName>contacts_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="47" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54438</StateNumber>
+      <DefaultExpression>nextval(&apos;my_entity_seq_gen&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="48" parent="13" name="departmentname">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54438</StateNumber>
+    </column>
+    <index id="49" parent="13" name="department_pkey">
+      <ObjectId>194006</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="50" parent="13" name="department_pkey">
+      <ObjectId>194007</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>department_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="51" parent="14" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54411</StateNumber>
+      <DefaultExpression>nextval(&apos;my_entity_seq_gen&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="52" parent="14" name="employee_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54411</StateNumber>
+    </column>
+    <column id="53" parent="14" name="time_count">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54411</StateNumber>
+    </column>
+    <index id="54" parent="14" name="general_time_pkey">
+      <ObjectId>193944</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="55" parent="14" name="general_time_pkey">
+      <ObjectId>193945</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>general_time_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="56" parent="14" name="general_time_employee_id_fkey">
+      <ObjectId>193946</ObjectId>
+      <ColNames>employee_id</ColNames>
+      <RefTableName>contacts</RefTableName>
+      <RefKeyName>contacts_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="57" parent="15" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54413</StateNumber>
+      <DefaultExpression>nextval(&apos;my_entity_seq_gen&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="58" parent="15" name="employee_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54413</StateNumber>
+    </column>
+    <column id="59" parent="15" name="time_count">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54413</StateNumber>
+    </column>
+    <column id="60" parent="15" name="description">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>54413</StateNumber>
+    </column>
+    <index id="61" parent="15" name="office_work_pkey">
+      <ObjectId>193966</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="62" parent="15" name="office_work_pkey">
+      <ObjectId>193967</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>office_work_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="63" parent="15" name="office_work_employee_id_fkey">
+      <ObjectId>193968</ObjectId>
+      <ColNames>employee_id</ColNames>
+      <RefTableName>contacts</RefTableName>
+      <RefKeyName>contacts_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="64" parent="16" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54402</StateNumber>
       <DefaultExpression>nextval(&apos;my_entity_seq_gen&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="25" parent="11" name="username">
+    <column id="65" parent="16" name="username">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54399</StateNumber>
     </column>
-    <column id="26" parent="11" name="password">
+    <column id="66" parent="16" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>54399</StateNumber>
     </column>
-    <index id="27" parent="11" name="users_pkey">
+    <index id="67" parent="16" name="users_pkey">
       <ObjectId>193921</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="28" parent="11" name="users_pkey">
+    <key id="68" parent="16" name="users_pkey">
       <ObjectId>193922</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
+    <column id="69" parent="17" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54414</StateNumber>
+      <DefaultExpression>nextval(&apos;my_entity_seq_gen&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="70" parent="17" name="employee_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54414</StateNumber>
+    </column>
+    <column id="71" parent="17" name="time_count">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>54414</StateNumber>
+    </column>
+    <index id="72" parent="17" name="weekend_pkey">
+      <ObjectId>193977</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="73" parent="17" name="weekend_pkey">
+      <ObjectId>193978</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>weekend_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="74" parent="17" name="weekend_employee_id_fkey">
+      <ObjectId>193979</ObjectId>
+      <ColNames>employee_id</ColNames>
+      <RefTableName>contacts</RefTableName>
+      <RefKeyName>contacts_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

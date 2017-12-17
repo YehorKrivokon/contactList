@@ -3,10 +3,7 @@ package contactList.app.controller;
 import contactList.app.action.contact.CreateContactAction;
 import contactList.app.action.contact.DeleteContactAction;
 import contactList.app.action.contact.UpdateContactAction;
-import contactList.app.model.BusinessTrip;
-import contactList.app.model.Contact;
-import contactList.app.model.Dayoff;
-import contactList.app.model.User;
+import contactList.app.model.*;
 import contactList.app.service.avatar.AvatarHandler;
 import contactList.app.service.business_trip.BusinessTripService;
 import contactList.app.service.contact.ContactService;
@@ -14,6 +11,7 @@ import contactList.app.service.dayoff.DayoffService;
 import contactList.app.service.messageSender.mail.ApplicationMailer;
 import contactList.app.service.security.SecurityService;
 import contactList.app.service.user.UserService;
+import contactList.app.service.weekend.WeekendService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -51,6 +49,9 @@ public class ContactController {
     @Autowired
     private DayoffService dayoffService;
 
+    @Autowired
+    private WeekendService weekendService;
+
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
         List<Contact> contacts = new ArrayList<>();
@@ -60,11 +61,43 @@ public class ContactController {
         }
 
         List<BusinessTrip> businessTripList = businessTripService.getAllBusinessTrips();
+        List<Weekend> weekendList = weekendService.getAllWeekends();
         List<Dayoff> dayoffFullList = dayoffService.getAllDayoff();
         model.addAttribute("businessTripList", businessTripList);
+        model.addAttribute("weekendList", weekendList);
         model.addAttribute("dayoffFullList", dayoffFullList);
         model.addAttribute("contacts", contacts);
         return securityService.returnPageByCheckingOnAnonymous("welcome", "login");
+    }
+
+    @RequestMapping(value = "/showTable", method = RequestMethod.POST)
+    public String showTable(Model model,
+                            @RequestParam(name = "contactStatusPage1") String contactStatusPage) {
+        List<Contact> contactListByDepartment = contactService.getContactsByDepartment(contactStatusPage);
+        model.addAttribute("contactListByDepartment1", contactListByDepartment);
+        List<Contact> contacts = new ArrayList<>();
+        User user = userService.findByUsernameWithService(securityService.findLoggedInUsername());
+        if (user != null) {
+            contacts = contactService.getUserContactList(user);
+        }
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("contactListByDepartment2", new ArrayList<Contact>());
+        return "/welcome";
+    }
+
+    @RequestMapping(value = "/showDayoff", method = RequestMethod.POST)
+    public String showDayoff(Model model,
+                            @RequestParam(name = "contactStatusPage2") String contactStatusPage) {
+        List<Contact> contactListByDepartment = contactService.getContactsWithDayoff(contactStatusPage);
+        model.addAttribute("contactListByDepartment2", contactListByDepartment);
+        List<Contact> contacts = new ArrayList<>();
+        User user = userService.findByUsernameWithService(securityService.findLoggedInUsername());
+        if (user != null) {
+            contacts = contactService.getUserContactList(user);
+        }
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("contactListByDepartment1", new ArrayList<Contact>());
+        return "/welcome";
     }
 
     @RequestMapping(value = "/add_contact", method = RequestMethod.POST)
@@ -87,8 +120,8 @@ public class ContactController {
         return "redirect:/welcome";
     }
 
-    @RequestMapping(value="/deleteContact", method = RequestMethod.POST)
-    public String deleteContact(Model model, @RequestParam String deletingContactId){
+    @RequestMapping(value = "/deleteContact", method = RequestMethod.POST)
+    public String deleteContact(Model model, @RequestParam String deletingContactId) {
         new DeleteContactAction(contactService, contactService.getContactById(Long.valueOf(deletingContactId))).execute();
         return "redirect:/welcome";
     }
@@ -99,7 +132,7 @@ public class ContactController {
         return contactService.getContactById(id).getAvatarAsAPicture();
     }
 
-    @RequestMapping(value="/update/{contact_id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/update/{contact_id}", method = RequestMethod.POST)
     public String updateContact(@PathVariable("contact_id") long id,
                                 @RequestParam String contactLoginUpd,
                                 @RequestParam String contactFullnameUpd,
@@ -107,7 +140,7 @@ public class ContactController {
                                 @RequestParam String contactDescriptionUpd,
                                 @RequestParam String contactStatusUpd,
                                 @RequestParam String importantUpd,
-                                @RequestParam MultipartFile avatarUpd){
+                                @RequestParam MultipartFile avatarUpd) {
         Contact contact = contactService.getContactById(id);
         try {
             contact.setAvatar(ArrayUtils.toObject(avatarUpd.getBytes()));
@@ -125,14 +158,14 @@ public class ContactController {
     }
 
     @SuppressWarnings("webapp/WEB-INF/")
-    @RequestMapping(value="/sendEmail", method = RequestMethod.POST)
-    public String sendEmail(){/*
+    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
+    public String sendEmail() {/*
         //Create the application context
         ApplicationContext context = new FileSystemXmlApplicationContext("application-context.xml");
         ApplicationMailer mailer = (ApplicationMailer) context.getBean("mailService");
 */
         //Get the mailer instance
-        applicationMailer.sendMail("eg.krivokon@gmail.com","aaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaa");
+        applicationMailer.sendMail("eg.krivokon@gmail.com", "aaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaa");
         return "redirect:/welcome";
     }
 

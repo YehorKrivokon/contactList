@@ -61,6 +61,20 @@ public class ContactDaoImpl implements ContactDao{
     }
 
     @Override
+    public List<Contact> getContactsByDepartment(String status) {
+        query = entityManager.createQuery("SELECT DISTINCT c FROM Contact c WHERE c.contactStatus = :status", Contact.class);
+        query.setParameter("status", status);
+        return (List<Contact>) query.getResultList();
+    }
+
+    @Override
+    public List<Contact> getContactsWithDayoff(String contactStatusPage) {
+        query = entityManager.createQuery("SELECT DISTINCT c FROM Contact c WHERE c.contactStatus = :status AND c.dayoffList IS NOT EMPTY", Contact.class);
+        query.setParameter("status", contactStatusPage);
+        return (List<Contact>) query.getResultList();
+    }
+
+    @Override
     public List<BusinessTrip> getContactBusinessTripList(Long id) {
         query = entityManager.createQuery("SELECT DISTINCT c FROM BusinessTrip c WHERE c.contact_id = :contact1", BusinessTrip.class);
         query.setParameter("contact1", id);
